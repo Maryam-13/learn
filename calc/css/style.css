@@ -1,0 +1,34 @@
+
+
+.button {
+    
+    background: #grey;
+    border-radius: 4.59px;
+    font: 600 24px/24px 'Comic Sans MS';
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 10px;
+   }
+
+.num{
+   font: 600 24px/24px 'Comic Sans MS'; 
+}
+
+
+
+
+.data {
+    display: inline-flex;
+    margin-bottom: 30px;
+}
+
+.form {
+    display: inline-block;
+    }
+
+
+
+
+
