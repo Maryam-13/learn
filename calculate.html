@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <title>Калькулятор</title>
+</head>
+
+<body>
+  <script>
+    let input1 = document.createElement("input");
+    document.body.appendChild(input1);
+    
+    let list = document.createElement("select");
+     document.body.appendChild(list);
+    list.id = "choice";  
+        let list_element = document.createElement("option");
+        list.appendChild(list_element).textContent = "+";
+      
+       let list_element1 = document.createElement("option");
+        list.appendChild(list_element1).textContent = "-";
+      
+       let list_element2 = document.createElement("option");
+        list.appendChild(list_element2).textContent = "*";
+      
+       let list_element3 = document.createElement("option");
+        list.appendChild(list_element3).textContent = "/";
+    
+    let input2 = document.createElement("input");
+    document.body.appendChild(input2);
+      
+      
+    let button = document.createElement("button");
+    document.body.appendChild(button);
+      
+    let text = document.createTextNode("Вычислить");
+      button.appendChild(text);
+      
+     button.onclick = calculate;
+     let result;
+      
+    function calculate(){
+ 
+    var txt = document.querySelector("#choice").value;
+    
+ if  (txt == '+') {
+    result = +input1.value + +input2.value;
+};
+
+    if  (txt == '-') {
+    result = +input1.value - +input2.value;
+};
+    if  (txt == '*') {
+    result = +input1.value * +input2.value;
+};
+    if  (txt == '/') {
+    result = +input1.value / +input2.value;
+};
+    
+    alert(result);
+}
+      
+     
+      
+  </script>
+</body>
+</html>
