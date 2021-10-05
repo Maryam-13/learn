@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+   <script>
+                          
+       
+      function calculate(){
+          let number1 = document.querySelector("#number1").value;
+          let number2 = document.querySelector("#number2").value;
+          
+          let math = document.querySelector("#math").value;
+                               
+           let div = document.createElement("div");
+              document.body.appendChild(div);
+          
+          fetch("calc.php?number1="+number1+"&number2="+number2+"&math="+math)
+          
+          .then(response => response.text())
+          .then(result => {
+               
+              let text = document.createTextNode("Результат:" +result);
+              
+              document.querySelector("div").innerHTML = text.textContent; 
+          })
+      }
+       
+       
+    </script>
+    
+    <title>Калькулятор</title>
+</head>
+
+<body>
+  <input type="text" id="number1">
+    <select id="math">
+        <option value="add">+</option>
+        <option value="sub">-</option>
+        <option value="mult">*</option>
+        <option value="div">/</option>
+    </select>
+    
+     <input type="text" id="number2">  
+    
+    <button onclick="calculate()"> Вычислить
+    </button>
+    
+  
+  
+</body>
+</html>
