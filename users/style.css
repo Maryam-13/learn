@@ -1,0 +1,38 @@
+.text{
+    font: 600 36px/36px 'Times New Roman';
+   text-align: center;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+.button {
+    display: block;
+    background: #82baff;
+    border-radius: 4.59px;
+    font: 600 24px/24px 'Arial';
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 10px;
+   }
+
+.box{
+    display: block;
+   font: 300 24px/24px 'Times New Roman';
+   margin-bottom: 10px;
+
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    margin: 0 auto;
+    justify-content: center;
+    }
+
+
+
+
+
