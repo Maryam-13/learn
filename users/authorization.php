@@ -1,20 +1,24 @@
 <?php
+require_once("User.php");
 
 session_start();
 
-if (!empty ($_REQUEST["name"])){
+//if (!empty ($_REQUEST[user->name])){
+
+     $connection = mysqli_connect("localhost","root","","users");
+          mysqli_set_charset($connection, "utf8mb4"); 
     
-$name = $_REQUEST["name"];
-$pass = $_REQUEST["password"];
+//$name = $_REQUEST["name"];
+//$pass = $_REQUEST["password"];
 
 $users = [];  
     
-if (!empty($name)) { 
-      if (!empty($pass)){
+if (!empty($user->name)) { 
+      if (!empty($user->pass)){
           
-          $connection = mysqli_connect("localhost","root","","users");
+         
 
-          $resource = mysqli_query($connection,"SELECT `id` FROM `users` WHERE name LIKE '$name' and password like $pass ");
+          $resource = mysqli_query($connection,"SELECT `id` FROM `users` WHERE name LIKE '$user->name' and password like MD5($user->pass) ");
           
           $row = mysqli_fetch_assoc($resource);
           
@@ -31,7 +35,7 @@ if (!empty($name)) {
          
       }
 
-}
+//}
 
 ?>
 
@@ -48,7 +52,7 @@ if (!empty($name)) {
    
 <form class = "form" method="post">
    <input class = "box" type="text" name="name" placeholder="имя">
-   <input class = "box" type="text" name="password" placeholder="пароль">
+   <input class = "box" type="password" name="password" placeholder="пароль">
     
    <input class = "button" type="submit" value="Войти">       
    <a href = "register.php" class="link"> <input class = "button" type="button" value="Регистрация"> </a>
