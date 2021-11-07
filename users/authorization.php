@@ -1,27 +1,32 @@
 <?php
 require_once("User.php");
+$user = new User();
+
+require_once("Database.php");
+$database = new Database;
 
 session_start();
 
-//if (!empty ($_REQUEST[user->name])){
-
-     $connection = mysqli_connect("localhost","root","","users");
-          mysqli_set_charset($connection, "utf8mb4"); 
+//if (!empty ($_REQUEST[$user->name])){
+$connection =  $database->connect();  
+mysqli_set_charset($connection, "utf8mb4"); 
     
-//$name = $_REQUEST["name"];
-//$pass = $_REQUEST["password"];
+$user->name = $_REQUEST["name"];
+$user->pass = $_REQUEST["password"];
 
 $users = [];  
-    
+ 
+     
 if (!empty($user->name)) { 
       if (!empty($user->pass)){
           
-         
-
-          $resource = mysqli_query($connection,"SELECT `id` FROM `users` WHERE name LIKE '$user->name' and password like MD5($user->pass) ");
+          $pass = MD5($user->pass);
           
+          $resource = $database->get_query($connection,"SELECT `id` FROM `users` WHERE name LIKE '$user->name' and password LIKE '$pass' ");
+                  
           $row = mysqli_fetch_assoc($resource);
-          
+         
+                  
           if (!empty($row)){
               
           $users = $_SESSION["users"];
@@ -29,6 +34,7 @@ if (!empty($user->name)) {
           $users[]= $row;
           
           $_SESSION["users"] = $users; 
+             
           }
               
           }
@@ -61,7 +67,10 @@ if (!empty($user->name)) {
     
      <div>
     <?php
-    if (!empty($name)) {     
+    require_once("User.php");
+    $user = new User();
+         
+    if (!empty($user->name)) {     
     echo "<pre>";
     print_r($users);
     }
