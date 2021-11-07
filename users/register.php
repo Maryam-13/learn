@@ -1,16 +1,27 @@
 <?php
 
 require_once("User.php");
+$user = new User();
 
+$user->name = $_REQUEST["name"];
+$user->pass = $_REQUEST["password"];
+$user->pass_conf = $_REQUEST['password-conf'];
+$user->mail = $_REQUEST["e-mail"];
+
+require_once("Database.php");
+$database = new Database;
 
 if (!empty($user->name)) { 
       if (!empty($user->mail)){
           if ($user->pass == $user->pass_conf){
-              $connection = mysqli_connect("localhost","root","","users");
+               
+              $connection = $database->connect(); 
+              
               mysqli_set_charset($connection, "utf8mb4");
+              
+              $database->query($database->connect(),"INSERT INTO `users`(`name`, `password`, `e-mail`) VALUES ('$user->name', MD5('$user->pass'),'$user->mail')");
 
-              mysqli_query($connection,"INSERT INTO `users`(`name`, `password`, `e-mail`) VALUES ('$user->name', MD5('$user->pass'),'$user->mail')");
-          }
+              }
       }
 
 }
