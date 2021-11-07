@@ -5,8 +5,14 @@
     margin-top: 20px;
 }
 
+.link{
+     text-decoration: none;
+}
+
 .button {
     display: block;
+    margin-bottom: 10px;
+    width: 200px;
     background: #82baff;
     border-radius: 4.59px;
     font: 600 24px/24px 'Arial';
