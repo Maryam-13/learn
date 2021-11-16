@@ -3,30 +3,16 @@
 require_once("User.php");
 $user = new User();
 
-$user->name = $_REQUEST["name"];
-$user->pass = $_REQUEST["password"];
-$user->pass_conf = $_REQUEST['password-conf'];
-$user->mail = $_REQUEST["e-mail"];
-
 require_once("Database.php");
 $database = new Database;
 
-if (!empty($user->name)) { 
-      if (!empty($user->mail)){
+if ($user->name_and_pass_exists()){
           if ($user->pass == $user->pass_conf){
-               
-              $connection = $database->connect(); 
               
-              mysqli_set_charset($connection, "utf8mb4");
+             $user->user_insert();
               
-              $database->query($database->connect(),"INSERT INTO `users`(`name`, `password`, `e-mail`) VALUES ('$user->name', MD5('$user->pass'),'$user->mail')");
-
               }
       }
-
-}
-
-
 
 //header("Location: register.php");
 ?>
