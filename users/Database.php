@@ -1,28 +1,26 @@
 <?php
 
-
 class Database{
-    
-    function connect(){
-        $connection = mysqli_connect("localhost","root","","users");
-        return $connection;
-    }
-    
-       
-    function query($connection, $sql){
-    mysqli_query($connection,$sql);
-    }
-    
-    function get_query($connection, $sql){
-        
-    $resource = mysqli_query($connection,$sql);    
-    return $resource;
-          
+private $connection;
 
-    }
+public function __construct(){
+   $this->connection = $this->connect();     
+}
+    
+private function connect(){
+    $connection = mysqli_connect("localhost","root","","users");
+    mysqli_set_charset($connection, "utf8mb4");
+    return $connection;
 }
 
+protected function query($sql){
+    mysqli_query($this->connection, $sql);
+}
 
-
+protected function get_query($sql){
+    $resource = mysqli_query($this->connection, $sql);
+    return $resource;
+}
+    
+}
 ?>
-
