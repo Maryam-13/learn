@@ -4,16 +4,15 @@ session_start();
 require_once("Auth.php");
 require_once("User.php");
 
-$user = new User(); // Шаг 1. Получить данны пользователя
+$user = new User(); // Шаг 1. Получить данные пользователя
 $users = [];
 
 if ($user->name_and_pass_exists()) { // Шаг 2. Проверить пришли данные
 $row = $user->load(); // Шаг 3. Получить пользователя из БД
-
-   
+  
 $users = Auth::add_user_to_session($row); // Шаг 4. Добавить пользователя в сессию. // Вызов статической функции.
+    
 };
-
 //header("Location: authorization.php");
 ?>
 
