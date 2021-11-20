@@ -21,6 +21,10 @@ protected function get_query($sql){
     $resource = mysqli_query($this->connection, $sql);
     return $resource;
 }
-    
+
+protected function extract($sql){
+    $resource = mysqli_query($this->connection, $sql);
+    return $resource;
+}
 }
 ?>
