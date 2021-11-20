@@ -38,7 +38,10 @@
     justify-content: center;
     }
 
-
+.content{
+    font: normal 16px/16px 'Times New Roman';
+    color: darkblue;
+}
 
 
 
