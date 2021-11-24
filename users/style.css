@@ -38,10 +38,27 @@
     justify-content: center;
     }
 
-.content{
-    font: normal 16px/16px 'Times New Roman';
+
+.title{
+    font: bold 24px/24px 'Times New Roman';
     color: darkblue;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
+.data{
+    font: normal 18px/18px 'Times New Roman';
+    color: darkblue;
+    text-align: right;
+    margin-top: 20px;
+    
+}
 
+.content{
+    font: normal 18px/18px 'Times New Roman';
+    margin-bottom: 20px;
+    
+    
+    
+}
 
