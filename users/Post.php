@@ -40,13 +40,17 @@ public function output_d(){
  }   
     
 public function post_change(){
-   $this->query("UPDATE `products` SET `title`='$this->title', `content`='$this->content' WHERE `id` LIKE 1");
+   $this->query("UPDATE `products` SET `title`='$this->title', `content`='$this->content' WHERE `id` LIKE 2");
 
 }    
     
 public function post_insert() {
   $this->query("INSERT INTO `products`( `name_id`, `title`, `content`) VALUES ('21', '$this->title','$this->content')");
 }    
+
+public function post_delete(){
+    $this->query("DELETE FROM `products` WHERE `id` LIKE 2");
+}
     
 }
 ?>
