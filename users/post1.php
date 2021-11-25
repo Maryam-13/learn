@@ -24,6 +24,9 @@ $date = $post->output_d();
 while ($row = mysqli_fetch_assoc($date)){
     $dates[] = $row;
 }
+
+$post->post_delete();
+
 ?>
 
 <!doctype html>
@@ -46,7 +49,7 @@ while ($row = mysqli_fetch_assoc($date)){
     </div>
     <div class="data">
         <a href="change1.php">Изменить</a>
-        <a href="">Удалить</a>
+        <a href="posts.php" ><input type="submit" value="Удалить"></a>
     </div>
 </body>
 </html>
