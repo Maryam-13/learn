@@ -2,7 +2,7 @@
 require_once("Database.php");
 
 class Post extends Database{
-public $database, $connection, $title, $content, $date, $id;
+public $database, $connection, $title, $content, $date, $id, $name_id;
 
 public function __construct() 
 {
@@ -13,7 +13,8 @@ $this->title = $_REQUEST["title"];
 if (!empty($_REQUEST["content"])) {
 $this->content = $_REQUEST["content"];
 } 
-     
+
+
 parent::__construct(); //  Подключиться к БД
 }
     
@@ -23,33 +24,34 @@ $result = !empty($this->title) && !empty($this->content);
 return $result;
 }
     
-public function output(){
+public function output($name_id){
     
-   $content = $this->extract("SELECT `content` FROM `products` WHERE name_id LIKE '21' ");
+   $content = $this->extract("SELECT `content` FROM `products` WHERE name_id LIKE '$name_id' ");
    return $content; 
    }
     
-public function output_t(){
-   $title = $this->extract("SELECT `title` FROM `products` WHERE name_id LIKE '21' ");
+public function output_t($name_id){
+   $title = $this->extract("SELECT `title` FROM `products` WHERE name_id LIKE '$name_id' ");
    return $title;  
  }
     
-public function output_d(){
-   $date = $this->extract("SELECT `date` FROM `products` WHERE name_id LIKE '21' ");
+public function output_d($name_id){
+   $date = $this->extract("SELECT `date` FROM `products` WHERE name_id LIKE '$name_id' ");
    return $date;  
  }   
     
-public function post_change(){
-   $this->query("UPDATE `products` SET `title`='$this->title', `content`='$this->content' WHERE `id` LIKE 2");
+public function post_change($post_id){
+   
+   $this->query("UPDATE `products` SET `title`='$this->title', `content`='$this->content' WHERE `id` LIKE '$post_id'");
 
 }    
     
-public function post_insert() {
-  $this->query("INSERT INTO `products`( `name_id`, `title`, `content`) VALUES ('21', '$this->title','$this->content')");
+public function post_insert($user_id) {
+  $this->query("INSERT INTO `products`( `name_id`, `title`, `content`) VALUES ('$user_id', '$this->title','$this->content')");
 }    
 
-public function post_delete(){
-    $this->query("DELETE FROM `products` WHERE `id` LIKE 2");
+public function post_delete($post_id){
+    $this->query("DELETE FROM `products` WHERE `id` LIKE $post_id");
 }
     
 }
