@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
 require_once("Auth.php");
 require_once("User.php");
@@ -10,14 +10,17 @@ $posts = [];
 $titles = [];
 $dates = [];
 
-$post->post_change();
+$i = $_REQUEST["i"];
+$name_id = $_REQUEST["name_id"];
 
-$title = $post->output_t();
+$post->post_change($id);
+
+$title = $post->output_t($name_id);
 while ($row = mysqli_fetch_assoc($title)){
     $titles[] = $row;
 }
 
-$note = $post->output();
+$note = $post->output($name_id);
 while ($row = mysqli_fetch_assoc($note)){
     $posts[] = $row;
 }
@@ -37,10 +40,10 @@ while ($row = mysqli_fetch_assoc($note)){
     </div>
     <div class="content">
      <form class = "form" method="post"> 
-         <input class='box' type='text' name='title' value=' <?php echo $titles[0]["title"] ?> '>
+         <input class='box' type='text' name='title' value=' <?php echo $titles[$i]["title"] ?> '>
        
          
-         <input class='content' type='text' name='content' value = '<?php echo $posts[0]["content"] ?>'>
+         <input class='content' type='text' name='content' value = '<?php echo $posts[$i]["content"] ?>'>
         
         <input class = "button" type="submit" value="Сохранить">
      </form>
