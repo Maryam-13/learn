@@ -9,13 +9,14 @@ $database = new Database;
 require_once("Post.php");
 $post = new Post();
 
+require_once("Auth.php");
+
+$name_id = $_REQUEST["name_id"];
+
 if ($post->title_and_content_exists()){
-          
-              
-             $post->post_insert();
     
-            //header("Location: create.php"); 
-           
+       $post->post_insert($name_id);
+  
 }
 ?>
 
