@@ -1,15 +1,19 @@
 <?php
+session_start();
+
 class Auth {
 static function add_user_to_session($user) { // Статическая функция - не требуется создавать экземпляр класса, чтобы вызвать функцию.
 if (!empty($user)){
-$users = $_SESSION["users"];
-$users[]= $user;
-$_SESSION["users"] = $users;
+//$users = $_SESSION["users"];
+//$users[]= $user;
+//$_SESSION["users"] = $users;
+$_SESSION["id"] = $user;
 }
-return $users;
+//return $users;
 }
     
 
+    
 }
 ?>
 
