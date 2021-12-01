@@ -9,6 +9,7 @@ $post = new Post(); // Получить данные пользователя
 $posts = [];
 $titles = [];
 $dates = [];
+
 $i = $_REQUEST["i"];
 $name_id = $_REQUEST["name_id"];
 
@@ -27,7 +28,17 @@ while ($row = mysqli_fetch_assoc($date)){
     $dates[] = $row;
 }
 
-$post->post_delete($id);
+$id = $post->output_id($name_id);
+while ($row = mysqli_fetch_assoc($id)){
+    $ids[] = $row;
+}
+
+if(!empty($_REQUEST["del_post"])){
+    
+  $post->post_delete($ids[$i]["id"]);  
+  header("Location: posts.php");    
+}
+
 
 ?>
 
@@ -51,7 +62,9 @@ $post->post_delete($id);
     </div>
     <div class="data">
         <a href="change1.php?i=<?php echo $i;?>&name_id=<?php echo $name_id; ?>">Изменить</a>
-        <a href="posts.php?name_id=<?php echo $name_id; ?>" ><input type="submit" value="Удалить"></a>
+        <form method="post">
+        <input type="submit" name="del_post" value="Удалить">
+        </form>
     </div>
 </body>
 </html>
