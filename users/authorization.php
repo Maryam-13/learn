@@ -13,8 +13,9 @@ $row = $user->load(); // Шаг 3. Получить пользователя и�
 
     Auth::add_user_to_session($row["id"]);
     $name_id = $_SESSION['id'];
+    header("Location: posts.php");
 };
-//header("Location: authorization.php");
+
 ?>
 
 <!doctype html>
@@ -32,8 +33,7 @@ $row = $user->load(); // Шаг 3. Получить пользователя и�
    <input class = "box" type="text" name="name" placeholder="имя">
    <input class = "box" type="password" name="password" placeholder="пароль">
    <input class = "button" type="submit" value="Войти">
-    <a href="posts.php?name_id=<?php echo $name_id;?>" class="link">Войти   </a>   
-   <a href = "register.php" class="link"> <input class = "button" type="button" value="Регистрация"> </a>
+    <a href = "register.php" class="link"> <input class = "button" type="button" value="Регистрация"> </a> 
  </form>
     
      <div>
@@ -47,7 +47,7 @@ $row = $user->load(); // Шаг 3. Получить пользователя и�
     //}
          
       // echo $user->name;  //выводит имя пользователя
-       echo $name_id;  
+       //echo $name_id;  
     ?>
     </div>
 </body>
