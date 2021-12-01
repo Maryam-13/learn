@@ -12,7 +12,8 @@ $posts = [];
 $titles = [];
 $dates = [];
 
-$name_id = $_REQUEST["name_id"];
+//$name_id = $_REQUEST["name_id"];
+$name_id = $_SESSION['id'];
 
 $title = $post->output_t($name_id);
 while ($row = mysqli_fetch_assoc($title)){
