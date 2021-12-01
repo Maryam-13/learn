@@ -38,10 +38,14 @@ public function output_t($name_id){
 public function output_d($name_id){
    $date = $this->extract("SELECT `date` FROM `products` WHERE name_id LIKE '$name_id' ");
    return $date;  
+ }  
+    
+public function output_id($name_id){
+   $id = $this->extract("SELECT `id` FROM `products` WHERE name_id LIKE '$name_id' ");
+   return $id;  
  }   
     
 public function post_change($post_id){
-   
    $this->query("UPDATE `products` SET `title`='$this->title', `content`='$this->content' WHERE `id` LIKE '$post_id'");
 
 }    
@@ -51,7 +55,7 @@ public function post_insert($user_id) {
 }    
 
 public function post_delete($post_id){
-    $this->query("DELETE FROM `products` WHERE `id` LIKE $post_id");
+    $this->query("DELETE FROM `products` WHERE `id` LIKE '$post_id'");
 }
     
 }
