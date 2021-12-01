@@ -16,6 +16,8 @@ $name_id = $_REQUEST["name_id"];
 if ($post->title_and_content_exists()){
     
        $post->post_insert($name_id);
+    
+       header("Location: posts.php");
   
 }
 ?>
@@ -34,7 +36,8 @@ if ($post->title_and_content_exists()){
     <input class = "box" type="text" name="title" placeholder="Заголовок">
     <input class="content" type="text" name="content" placeholder="Текст поста">
     
-   <input class = "button" type="submit" value="Создать">
+    <input class = "button" type="submit" value="Создать">
+    
 </form>
 </body>
 </html>
