@@ -1,24 +1,18 @@
 <?php
 
-require_once("User.php");
+require_once("classes/User.php");
+require_once("classes/Post.php");
+require_once("classes/Auth.php");
+
 $user = new User();
-
-require_once("Database.php");
 $database = new Database;
-
-require_once("Post.php");
 $post = new Post();
-
-require_once("Auth.php");
 
 $name_id = $_REQUEST["name_id"];
 
-if ($post->title_and_content_exists()){
-    
-       $post->post_insert($name_id);
-    
-       header("Location: posts.php");
-  
+if ($post->title_and_content_exists()) {
+    $post->post_insert($name_id);
+    header("Location: posts.php");
 }
 ?>
 
@@ -28,16 +22,13 @@ if ($post->title_and_content_exists()){
     <title>Создание</title>
     <link href="style.css" rel="stylesheet">
 </head>
-
 <body>
-    <div class="text"> Мой блог
-    </div>
-<form class = "form" method="post">
-    <input class = "box" type="text" name="title" placeholder="Заголовок">
-    <input class="content" type="text" name="content" placeholder="Текст поста">
-    
-    <input class = "button" type="submit" value="Создать">
-    
+<div class="text"> Мой блог
+</div>
+<form class="form change" method="post">
+    <input class="box change" type="text" name="title" placeholder="Заголовок">
+    <textarea class="textarea" type="text" name="content" placeholder="Текст поста"></textarea>
+    <input class="button" type="submit" value="Создать">
 </form>
 </body>
 </html>
