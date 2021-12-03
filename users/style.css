@@ -38,6 +38,9 @@
     justify-content: center;
     }
 
+.change{
+    width: 700px; 
+}
 
 .title{
     font: bold 24px/24px 'Times New Roman';
@@ -56,9 +59,13 @@
 
 .content{
     font: normal 18px/18px 'Times New Roman';
-    margin-bottom: 20px;
-    
-    
-    
+    margin-bottom: 20px;  
 }
 
+.textarea{
+    font: normal 18px/18px 'Times New Roman';
+    height: 400px;
+    width: 700px; 
+    resize: none;
+    margin-bottom: 20px;
+}
