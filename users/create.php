@@ -15,20 +15,3 @@ if ($post->title_and_content_exists()) {
     header("Location: posts.php");
 }
 ?>
-
-<!doctype html>
-<html>
-<head>
-    <title>Создание</title>
-    <link href="style.css" rel="stylesheet">
-</head>
-<body>
-<div class="text"> Мой блог
-</div>
-<form class="form change" method="post">
-    <input class="box change" type="text" name="title" placeholder="Заголовок">
-    <textarea class="textarea" type="text" name="content" placeholder="Текст поста"></textarea>
-    <input class="button" type="submit" value="Создать">
-</form>
-</body>
-</html>
