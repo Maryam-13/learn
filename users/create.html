@@ -4,6 +4,7 @@
 <head>
     <title>Создание</title>
     <link href="style.css" rel="stylesheet">
+    <meta charset = "utf-8">
 </head>
 
 <body>
@@ -43,6 +44,20 @@
         let text = document.createTextNode("Создать");
         button.appendChild(text);
         button.onclick = create;
+
+        function create(event){
+            event.preventDefault();
+             let data = new FormData();
+             data.append("title", title.value);
+             data.append("content", content.value);
+             data.append("name_id", '21');
+               
+             fetch("create.php", {method: "post", body: data}) 
+             .then(response => response.text())
+             .then(result =>{            
+             window.location.href = "posts.php";
+             })
+        }
     </script>
 
 </body>
