@@ -4,6 +4,7 @@
 <head>
   <title>Регистрация</title>
   <link href="style.css" rel="stylesheet">
+  <meta charset = "utf-8">
 </head>
 
 <body>
@@ -38,16 +39,16 @@
     password.id = "password";
     password.setAttribute("type", "password");
 
-    let pass_conf = document.createElement("input");
-    form.appendChild(pass_conf);
-    pass_conf.className = "box";
-    pass_conf.id = "password-conf";
-    pass_conf.setAttribute("type", "password");
+    let password_conf = document.createElement("input");
+    form.appendChild(password_conf);
+    password_conf.className = "box";
+    password_conf.id = "password_conf";
+    password_conf.setAttribute("type", "password");
 
-    let e_mail = document.createElement("input");
-    form.appendChild(e_mail);
-    e_mail.className = "box";
-    e_mail.id = "e-mail";
+    let mail = document.createElement("input");
+    form.appendChild(mail);
+    mail.className = "box";
+    mail.id = "mail";
 
     let button = document.createElement("button");
     form.appendChild(button);
@@ -55,7 +56,22 @@
     let text = document.createTextNode("Регистрация");
     button.appendChild(text);
     button.onclick = register;
-  </script>>
+
+    function register(event){
+            event.preventDefault();
+             let data = new FormData();
+             data.append("name", name.value);
+             data.append("password", password.value);
+             data.append("password_conf", password_conf.value);
+             data.append("mail", mail.value);
+
+             fetch("register.php", {method: "post", body: data}) 
+             .then(response => response.text())
+             .then(result =>{            
+             window.location.href = "register.html";
+             })
+        }
+  </script>
 </body>
 
 </html>
