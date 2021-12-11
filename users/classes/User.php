@@ -16,12 +16,12 @@ class User extends Database
             $this->pass = $_REQUEST["password"];
         }
 
-        if (!empty($_REQUEST["e-mail"])) {
-            $this->mail = $_REQUEST["e-mail"];
+        if (!empty($_REQUEST["mail"])) {
+            $this->mail = $_REQUEST["mail"];
         }
 
-        if (!empty($_REQUEST["password-conf"])) {
-            $this->pass_conf = $_REQUEST["password-conf"];
+        if (!empty($_REQUEST["password_conf"])) {
+            $this->pass_conf = $_REQUEST["password_conf"];
         }
 
         parent::__construct(); // Шаг 2. Подключиться к БД
