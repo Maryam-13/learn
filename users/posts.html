@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <title>Посты</title>
+    <link href="style.css" rel="stylesheet">
+    <meta charset = "utf-8">
+</head>
+<body>
+    <script>
+        window.addEventListener('DOMContentLoaded', load);
+
+        let heading = document.createElement("div");
+        document.body.appendChild(heading);
+
+        heading.appendChild(document.createTextNode("Мой блог"));
+        heading.className = "text";
+      
+        function load(){
+         fetch("posts.php")
+         .then(response => response.text())
+         .then(result =>{
+            let title1 = document.createElement("div");
+                 document.body.appendChild(title1);
+                 let text = document.createTextNode(result);
+                 title1.appendChild(text);
+
+              /* for (let i = 0; i < result.length; i++){
+                 let post = result[i];
+
+                 let title1 = document.createElement("div");
+                 document.body.appendChild(title1);
+                 let text = document.createTextNode(post.title);
+                 title1.appendChild(text);
+               
+                 
+             }*/
+         })
+     }
+    </script>
+    
+<!--<div class="text"> Мой блог
+</div>
+<div class="content">
+    <?php
+      foreach ($posts as $post) { 
+        print_r('<div class="title">' . $post["title"] . '</div>');
+        print_r('<div class="content">' . mb_substr($post["content"], 0, 150) . '</div>'); ?>
+        <a href="post.php?i=<?php echo $post["id"]; ?>&name_id=<?php echo $name_id; ?>" class="data">Подробнее</a><?php
+        print_r('<div class="data">' . $post["date"] . '</div>');
+        }
+    ?>
+</div>
+<div class="data">
+    <a href="create.html?name_id=<?php echo $name_id; ?>">Создать</a>
+</div>
+-->
+</body>
+</html>
+
+
+    
