@@ -13,12 +13,11 @@ $posts = [];
 $name_id = $_SESSION['id'];
 
 $posts = $post->output_all($name_id);
-$post = $database->get_array($posts);
 
+foreach ($posts as $post){
+$post = $database->get_array($posts);
 //print_r($post);
-echo json_encode($post);
+echo json_encode($post, JSON_UNESCAPED_UNICODE);
+}
 
 ?>
-
-
-    
