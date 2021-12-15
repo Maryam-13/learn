@@ -14,10 +14,10 @@ $name_id = $_SESSION['id'];
 
 $posts = $post->output_all($name_id);
 
-foreach ($posts as $post){
-$post = $database->get_array($posts);
-//print_r($post);
-echo json_encode($post, JSON_UNESCAPED_UNICODE);
-}
 
-?>
+$i = 0;
+foreach ($posts as $post){
+$post[$i] = $database->get_array($posts);
+echo json_encode($post[$i], JSON_UNESCAPED_UNICODE);
+$i = $i + 1;
+}
