@@ -1,70 +1,16 @@
 <!doctype html>
 <html>
+
 <head>
     <title>Посты</title>
     <link href="style.css" rel="stylesheet">
-    <meta charset = "utf-8">
+    <meta charset="utf-8">
 </head>
+
 <body>
-    <script>
-        window.addEventListener('DOMContentLoaded', load);
+    <script src = "posts.js"></script>
 
-        let heading = document.createElement("div");
-        document.body.appendChild(heading);
-
-        heading.appendChild(document.createTextNode("Мой блог"));
-        heading.className = "text";
-
-     
-       function load(){
-           
-         fetch("posts.php")
-         .then(response => response.json())
-         .then(result => {
-
-            let title1 = document.createElement("div");
-                 document.body.appendChild(title1);
-                 let text = document.createTextNode(result);
-                 title1.appendChild(text);
-
-            /*for (let i = 0; i < result.length; i++){
-                let post = result[i];
-
-                 let title1 = document.createElement("div");
-                 document.body.appendChild(title1);
-                 let text = document.createTextNode(post.title);
-                 title1.appendChild(text);
-               
-                 let content1 = document.createElement("div");
-                 document.body.appendChild(content1);
-                 text = document.createTextNode(post.content);
-                 content1.appendChild(text);
-
-                 let date1 = document.createElement("div");
-                 document.body.appendChild(date1);
-                 text = document.createTextNode(post.date);
-                 date1.appendChild(text);*/
-           
-         
-         })
-    }
-
-
-    let button = document.createElement("button");
-        document.body.appendChild(button);
-        button.className = "button";
-        let text = document.createTextNode("Создать");
-        button.appendChild(text);
-        button.onclick = create;
-      
-
-        function create(){
-         
-            window.location.href = "create.html?name_id=21"; 
-        }
-    </script>
-    
-<!--<div class="text"> Мой блог
+    <!--<div class="text"> Мой блог
 </div>
 <div class="content">
     <?php
@@ -81,7 +27,5 @@
 </div>
 -->
 </body>
+
 </html>
-
-
-    
