@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+    <title>Авторизация</title>
+    <link href="style.css" rel="stylesheet">
+    <meta charset = "utf-8">
+</head>
+<body>
+    <script>
+        let heading = document.createElement("div");
+    document.body.appendChild(heading);
+    heading.appendChild(document.createTextNode("Мой блог"));
+    heading.className = "text";
+
+    let form = document.createElement("form");
+    document.body.appendChild(form);
+    form.className = "form";
+
+    let name = document.createElement("input");
+    form.appendChild(name);
+    name.className = "box";
+    name.id = "name";
+
+    let password = document.createElement("input");
+    form.appendChild(password);
+    password.className = "box";
+    password.id = "password";
+    password.setAttribute("type", "password");
+
+    let button = document.createElement("button");
+    form.appendChild(button);
+    button.className = "button";
+    let text = document.createTextNode("Войти");
+    button.appendChild(text);
+    button.onclick = enter;
+
+    function enter(event){
+        event.preventDefault();
+             let data = new FormData();
+             data.append("name", name.value);
+             data.append("password", password.value);
+             
+             fetch("authorization.php", {method: "post", body: data}) 
+             .then(response => response.text())
+             .then(result =>{            
+             window.location.href = "posts.html";
+             })
+    }
+
+    let button_reg = document.createElement("button");
+    form.appendChild(button_reg);
+    button_reg.className = "button";
+    let text1 = document.createTextNode("Регистрация");
+    button_reg.appendChild(text1);
+    button_reg.onclick = register;
+
+    function register(){
+        window.location.href = "register.html";
+    }
+    </script>
+
+<!--<div class="text"> Мой блог
+</div>
+<form class="form" method="post">
+    <input class="box" type="text" name="name" placeholder="имя">
+    <input class="box" type="password" name="password" placeholder="пароль">
+    <input class="button" type="submit" value="Войти">
+    <a href="register.php" class="link"> <input class="button" type="button" value="Регистрация"> </a>
+</form>-->
+</body>
+</html>
