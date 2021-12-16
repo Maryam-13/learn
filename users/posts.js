@@ -1,10 +1,12 @@
 window.addEventListener('DOMContentLoaded', load);
 
-let heading = document.createElement("div");
-document.body.appendChild(heading);
-
-heading.appendChild(document.createTextNode("Мой блог"));
-heading.className = "text";
+function create_heading() {
+    let heading = document.createElement("div");
+    document.body.appendChild(heading);
+    heading.appendChild(document.createTextNode("Мой блог"));
+    heading.className = "text";
+}
+create_heading();
 
 
 function load() {
@@ -23,31 +25,44 @@ function load() {
 
                 let object = JSON.parse(a[i]);
 
-                let title1 = document.createElement("div");
-                document.body.appendChild(title1);
-                let text = document.createTextNode(object.title);
-                title1.appendChild(text);
-                title1.className = "title";
+                function create_title() {
+                    let title1 = document.createElement("div");
+                    document.body.appendChild(title1);
+                    let text = document.createTextNode(object.title);
+                    title1.appendChild(text);
+                    title1.className = "title";
+                }
+                create_title();
 
-                let content1 = document.createElement("div");
-                document.body.appendChild(content1);
-                text = document.createTextNode(object.content);
-                content1.appendChild(text);
-                content1.className = "content";
+                function create_content() {
+                    let content1 = document.createElement("div");
+                    document.body.appendChild(content1);
+                    text = document.createTextNode(object.content);
+                    content1.appendChild(text);
+                    content1.className = "content";
+                }
+                create_content();
 
-                let word = document.createElement("a");
-                document.body.appendChild(word);
-                let linkText = document.createTextNode("Подробнее...");
-                word.appendChild(linkText);
-                word.title = "Подробнее...";
-                word.href = "post.php?i=object.id&name_id=object.name_id";
-                
+                function create_link() {
+                    let word = document.createElement("a");
+                    document.body.appendChild(word);
+                    let linkText = document.createTextNode("Подробнее...");
+                    word.appendChild(linkText);
+                    word.title = "Подробнее...";
+                    word.href = "post.php?i=object.id&name_id=object.name_id";
+                }
+                create_link();
 
-                let date1 = document.createElement("div");
-                document.body.appendChild(date1);
-                text = document.createTextNode(object.date);
-                date1.appendChild(text);
-                date1.className = "data";
+
+                function create_date() {
+                    let date1 = document.createElement("div");
+                    document.body.appendChild(date1);
+                    text = document.createTextNode(object.date);
+                    date1.appendChild(text);
+                    date1.className = "data";
+                }
+                create_date();
+               
             }
         })
 }
