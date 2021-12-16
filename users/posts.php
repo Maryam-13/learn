@@ -11,13 +11,13 @@ $database = new Database;
 $posts = [];
 
 $name_id = $_SESSION['id'];
+print_r($name_id);
 
 $posts = $post->output_all($name_id);
 
+$result = [];
 
-$i = 0;
-foreach ($posts as $post){
-$post[$i] = $database->get_array($posts);
-echo json_encode($post[$i], JSON_UNESCAPED_UNICODE);
-$i = $i + 1;
+for ($i = 0; $i < $posts->num_rows; $i++){
+$result[] = $database->get_array($posts);
 }
+echo json_encode($result, JSON_UNESCAPED_UNICODE);
