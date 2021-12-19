@@ -11,7 +11,7 @@ $database = new Database;
 $posts = [];
 
 $name_id = $_SESSION['id'];
-print_r($name_id);
+//print_r($name_id);
 
 $posts = $post->output_all($name_id);
 
