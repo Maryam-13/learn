@@ -49,7 +49,9 @@ function load() {
                     let linkText = document.createTextNode("Подробнее...");
                     word.appendChild(linkText);
                     word.title = "Подробнее...";
-                    word.href = "post.php?i=object.id&name_id=object.name_id";
+                    let ob_id = object.id;
+                    word.href = 'post.html?'+ob_id;
+
                 }
                 create_link();
 
