@@ -8,8 +8,8 @@ class User extends Database
 
     public function __construct() // Всегда запускается при создании экземпляра.
     {
-        if (!empty($_REQUEST["name"])) {
-            $this->name = $_REQUEST["name"];
+        if (!empty($_REQUEST["user_name"])) {
+            $this->name = $_REQUEST["user_name"];
         }
 
         if (!empty($_REQUEST["password"])) {
