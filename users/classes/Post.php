@@ -31,9 +31,14 @@ class Post extends Database
         return $record;
     }
 
-    public function output_one($name_id, $id)
+    /*public function output_one($name_id, $id)
     {
         $record = $this->get_query("SELECT * FROM `products` WHERE name_id LIKE '$name_id' AND id LIKE '$id'");
+        return $record;
+    }*/
+    public function output_one($id)
+    {
+        $record = $this->get_query("SELECT * FROM `products` WHERE  id LIKE '$id'");
         return $record;
     }
 
