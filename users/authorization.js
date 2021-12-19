@@ -16,7 +16,7 @@ function create_form() {
         let user_name = document.createElement("input");
         form.appendChild(user_name);
         user_name.className = "box";
-        user_name.id = "name";
+        user_name.id = "user_name";
         return(user_name.value);
     }
     create_name();
@@ -41,7 +41,7 @@ function create_form() {
     function enter(event){
         event.preventDefault();
              let data = new FormData();
-             data.append("name", user_name.value);
+             data.append("user_name", user_name.value);
              data.append("password", password.value);
              
              fetch("authorization.php", {method: "post", body: data}) 
