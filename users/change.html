@@ -9,74 +9,7 @@
 
 <body>
 
-    <script>
-        window.addEventListener('DOMContentLoaded', load);
-
-        let searchParams = new URLSearchParams(window.location.search);
-        let i = String(searchParams);
-        let id = i.slice(0, 2);
-
-        function create_heading() {
-            let heading = document.createElement("div");
-            document.body.appendChild(heading);
-            heading.appendChild(document.createTextNode("Мой блог"));
-            heading.className = "text";
-
-        }
-        create_heading();
-
-        function load() {
-
-            fetch("change.php")
-                .then(response => response.json())
-                .then(result => {
-
-                    let post = result;
-
-                    let div = document.createElement("div");
-                    document.body.appendChild(div);
-                    div.className = "content";
-
-                    let form = document.createElement("form");
-                    div.appendChild(form);
-                    form.className = "form change";
-
-                    let title1 = document.createElement("input");
-                    form.appendChild(title1);
-                    title1.value = post.title;
-                    title1.className = "box change";
-                    title1.id = "title";
-
-                    let content1 = document.createElement("textarea");
-                    form.appendChild(content1);
-                    content1.value = post.content;
-                    content1.className = "textarea";
-                    content1.id = "content";
-
-                    let button = document.createElement("button");
-                    form.appendChild(button);
-                    button.className = "button";
-                    let text1 = document.createTextNode("Сохранить");
-                    button.appendChild(text1);
-                    button.onclick = change_post;
-
-                    function change_post(event) {
-
-                        let data = new FormData();
-                        data.append("change", 1);
-                        data.append("title", title1.value);
-                        data.append("content", content1.value);
-                        
-                        fetch("change.php", { method: "post", body: data })
-                            .then(response => response.text())
-                            .then(result => {
-                                window.location.href = "posts.html";
-                            })
-                    }
-
-                })
-
-        }
+    <script src="change.js">
     </script>
     <!--<div class="text"> Мой блог
 </div>
