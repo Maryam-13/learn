@@ -8,6 +8,7 @@ function create_heading() {
 }
 create_heading();
 
+let ob_name_id = {};
 
 function load() {
 
@@ -50,7 +51,7 @@ function load() {
                     word.appendChild(linkText);
                     word.title = "Подробнее...";
                     let ob_id = object.id;
-                    word.href = 'post.html?'+ob_id;
+                    word.href = 'post.html?' + ob_id;
 
                 }
                 create_link();
@@ -64,21 +65,25 @@ function load() {
                     date1.className = "data";
                 }
                 create_date();
-               
+
+                
+                ob_name_id = object.name_id;
+                
             }
         })
 }
 
+function create_button(){
+    let button = document.createElement("button");
+    document.body.appendChild(button);
+    button.className = "button";
+    let text = document.createTextNode("Создать");
+    button.appendChild(text);
+    button.onclick = create;
 
-let button = document.createElement("button");
-document.body.appendChild(button);
-button.className = "button";
-let text = document.createTextNode("Создать");
-button.appendChild(text);
-button.onclick = create;
 
-
-function create() {
-
-    window.location.href = "create.html?name_id=21";
+    function create() {
+        window.location.href = "create.html?" + ob_name_id;
+    }
 }
+create_button();
