@@ -9,15 +9,15 @@ $database = new Database;
 
 $posts = [];
 
-$i = 10;//$_REQUEST["i"];
+$id = $_REQUEST["id"];
 //$name_id = $_REQUEST["name_id"];
 
-$posts = $post->output_one($i);
+$posts = $post->output_one($id);
 $note = $database->get_array($posts);
 echo json_encode($note, JSON_UNESCAPED_UNICODE);
 
 if (!empty($_REQUEST["change"])) {
-    $post->post_change($i);
+    $post->post_change($id);
     header("Location: posts.html");
 }
 ?>
