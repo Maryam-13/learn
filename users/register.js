@@ -11,41 +11,41 @@ function create_form() {
     document.body.appendChild(form);
     form.className = "form";
 
-    function create_name() {
+    this.name = function() {
         let user_name = document.createElement("input");
         form.appendChild(user_name);
         user_name.className = "box";
         user_name.id = "user_name";
     }
-    create_name();
+    //create_name();
 
-    function create_pass() {
+    this.pass = function() {
         let password = document.createElement("input");
         form.appendChild(password);
         password.className = "box";
         password.id = "password";
         password.setAttribute("type", "password");
     }
-    create_pass();
+    //create_pass();
 
-    function create_pass_conf() {
+    this.pass_conf = function() {
         let password_conf = document.createElement("input");
         form.appendChild(password_conf);
         password_conf.className = "box";
         password_conf.id = "password_conf";
         password_conf.setAttribute("type", "password");
     }
-    create_pass_conf();
+    //create_pass_conf();
 
-    function create_mail() {
+    this.mail = function() {
         let mail = document.createElement("input");
         form.appendChild(mail);
         mail.className = "box";
         mail.id = "mail";
     }
-    create_mail();
+    //create_mail();
 
-    function create_button() {
+    this.button = function() {
         let button = document.createElement("button");
         form.appendChild(button);
         button.className = "button";
@@ -54,7 +54,7 @@ function create_form() {
         button.onclick = register;
     }
    
-    create_button();
+    //create_button();
     
 
     function register(event) {
@@ -73,4 +73,10 @@ function create_form() {
     }
     
 }
-create_form();
+//create_form();
+let form = new create_form();
+form.name();
+form.pass();
+form.pass_conf();
+form.mail();
+form.button();
