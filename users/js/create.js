@@ -4,11 +4,9 @@ let i = name_id.slice(0, 2);
 
 page.create_heading();
 let form = page.create_form(document.body, "form change");
-
 create_title();
 create_content();
 page.create_button(form, "Создать", create);
-
 
 function create_title() {
     let title = document.createElement("input");
@@ -24,9 +22,9 @@ function create_content() {
     content.id = "content";
 }
 
-
 function create(event) {
     event.preventDefault();
+    event.cancelBubble = true;
     let data = new FormData();
     data.append("title", title.value);
     data.append("content", content.value);
