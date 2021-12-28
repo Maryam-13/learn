@@ -6,6 +6,7 @@ let page = {};
     page.create_title = create_title;
     page.create_content = create_content;
     page.create_date = create_date;
+    page.create_name = create_name;
     page.create_pass = create_pass;
     page.create_button = create_button;
 
@@ -41,6 +42,12 @@ let page = {};
         text = document.createTextNode(post_date);
         date1.appendChild(text);
         date1.className = "data";
+    }
+    function create_name() {
+        let user_name = document.createElement("input");
+        form.appendChild(user_name);
+        user_name.className = "box";
+        user_name.id = "user_name";
     }
     function create_pass() {
         let password = document.createElement("input");
