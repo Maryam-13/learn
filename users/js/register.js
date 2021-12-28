@@ -1,21 +1,10 @@
-
 page.create_heading();
-
 let form = page.create_form(document.body, "form");
-create_name();
+page.create_name();
 page.create_pass(); 
-
 create_pass_conf();
 create_mail();
 page.create_button(form, "Регистрация", register);
-
-
-function create_name() {
-    let user_name = document.createElement("input");
-    form.appendChild(user_name);
-    user_name.className = "box";
-    user_name.id = "user_name";
-}
 
 function create_pass_conf() {
     let password_conf = document.createElement("input");
@@ -32,9 +21,9 @@ function create_mail(){
     mail.id = "mail";
 }
 
-
 function register(event) {
     event.preventDefault();
+    event.cancelBubble = true;
     let data = new FormData();
     data.append("user_name", user_name.value);
     data.append("password", password.value);
