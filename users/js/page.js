@@ -9,6 +9,7 @@ let page = {};
     page.create_name = create_name;
     page.create_pass = create_pass;
     page.create_button = create_button;
+    page.get_id = get_id;
 
     function create_heading1() {
         let heading = document.createElement("div");
@@ -63,5 +64,11 @@ let page = {};
         let text = document.createTextNode(word);
         button.appendChild(text);
         button.onclick = function_name;
+    }
+    function get_id() {
+        let searchParams = new URLSearchParams(window.location.search);
+        let i = String(searchParams);
+        let id = i.slice(0, 2);
+        return id;
     }
 })();
