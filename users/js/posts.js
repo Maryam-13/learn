@@ -3,7 +3,7 @@ var blog = {};
 
     blog.load_posts_page = load;
 
-    page.create_heading();
+    page.create_heading;
     page.create_button(document.body, "Создать", create);
 
     let ob_name_id = {};
