@@ -3,8 +3,8 @@ var blog = {};
 
     blog.load_post_page = load;
 
-    page.create_heading();
-    let id = page.get_id();
+    page.create_heading;
+    let id = page.get_parameter();
     create_link();
 
     function load() {
