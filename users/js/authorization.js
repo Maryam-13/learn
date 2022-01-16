@@ -1,9 +1,9 @@
 (function(){
-    page.create_heading();
+    page.create_heading;
 
     form = page.create_form(document.body, "form");
-    page.create_name();
-    page.create_pass();
+    $(form).append(page.create_name);
+    $(form).append(page.create_pass);
     page.create_button(form, "Войти", enter);
     page.create_button(form, "Регистрация", register);
 
