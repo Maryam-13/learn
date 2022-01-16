@@ -3,11 +3,13 @@ var blog = {};
 
     blog.load_change_page = load;
 
-    page.create_heading();
+    page.create_heading;
 
     let div = create_div();
+    
+
     let form = page.create_form(div, "form change");
-    let id = page.get_id();
+    let id = page.get_parameter();
 
     function load() {
 
@@ -24,6 +26,7 @@ var blog = {};
 
     }
 
+   
     function create_div() {
         let div = document.createElement("div");
         document.body.appendChild(div);
