@@ -4,9 +4,9 @@
     $(form).append(page.create_name);
     $(form).append(page.create_pass);
     //create_pass_conf();
-    $(form).append("<input class='box' id='password_conf' type='password'>")
+    $(form).append("<input class='box' id='password_conf' type='password'>");
     //create_mail();
-    $(form).append("<input class='box' id='mail'>")
+    $(form).append("<input class='box' id='mail'>");
     page.create_button(form, "Регистрация", register);
 
         /*function create_pass_conf() {
