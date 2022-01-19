@@ -6,9 +6,30 @@
     <link href="style.css" rel="stylesheet">
     <meta charset="utf-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script>$(function () {
+            $("#datepicker").datepicker();
+
+            datepicker.onclick = get_data;
+
+        })
+
+        function get_data(event) {
+
+            let year = datepicker.querySelector(".ui-datepicker-year").textContent;
+            let month = datepicker.querySelector(".ui-datepicker-month").textContent;
+            let data = datepicker.querySelector(".ui-datepicker-current-day").textContent;
+
+            alert(data + " " + month + " " + year);
+        }
+
+
+    </script>
 </head>
 
 <body>
+    <div id="datepicker"></div>
     <script src="js/page.js"></script>
     <script src="js/posts.js"></script>
 </body>
