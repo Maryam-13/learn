@@ -6,8 +6,6 @@ var blog = {};
     page.create_heading;
 
     let div = create_div();
-    
-
     let form = page.create_form(div, "form change");
     let id = page.get_parameter();
 
@@ -26,7 +24,6 @@ var blog = {};
 
     }
 
-   
     function create_div() {
         let div = document.createElement("div");
         document.body.appendChild(div);
@@ -35,19 +32,11 @@ var blog = {};
     }
 
     function create_title1(title) {
-        let title1 = document.createElement("input");
-        form.appendChild(title1);
-        title1.value = title;
-        title1.className = "box change";
-        title1.id = "title1";
+        $(form).append("<input class='box change' id = 'title1' value = '" + title + "'>");
     }
 
     function create_content1(content) {
-        let content1 = document.createElement("textarea");
-        form.appendChild(content1);
-        content1.value = content;
-        content1.className = "textarea";
-        content1.id = "content1";
+        $(form).append("<textarea class='textarea' id='content1'>" + content + "</textarea>");
     }
 
     function change_post(event) {
