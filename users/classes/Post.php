@@ -4,7 +4,7 @@ require_once("Database.php");
 
 class Post extends Database
 {
-    public $database, $connection, $title, $content, $date, $id, $name_id, $record;
+    public $database, $connection, $title, $content, $date, $id, $name_id, $record, $change_date;
 
     public function __construct()
     {
@@ -56,7 +56,9 @@ class Post extends Database
     {
         $this->query("DELETE FROM `products` WHERE `id` LIKE '$post_id'");
     }
-
+    public function output_from_date($name_id, $change_date)
+    {
+        $record = $this->get_query("SELECT * FROM `products` WHERE name_id LIKE '$name_id' AND ( `date` BETWEEN '$change_date 00:00:00.000000' AND '$change_date 23:59:59.000000')");
+        return $record;
+    }
 }
-
-?>
