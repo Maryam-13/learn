@@ -7,6 +7,15 @@ var blog = {};
     let id = page.get_parameter();
     create_link();
 
+    div = create_div();
+
+    function create_div() {
+        let div = document.createElement("div");
+        document.body.appendChild(div);
+        div.className = "content";
+        return div;
+    }
+
     function load() {
 
         fetch("/users/post.php?id=" + id)
