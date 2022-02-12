@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel 8 CRUD Example </h2>
+                <h2>Блог </h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="" title="Create a product"> <i class="fas fa-plus-circle"></i>
+                <a class="btn btn-success" href="/products/create" title="Create a product">  <i class="fas fa-plus-circle"></i>
                     </a>
             </div>
         </div>
@@ -22,27 +22,25 @@
     <table class="table table-bordered table-responsive-lg">
         <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>description</th>
-            <th>Price</th>
-            <th>Date Created</th>
-            <th>Actions</th>
+            <th>Название фильма</th>
+            <th>Аннотация</th>
+            <th>Дата</th>
+            <th>Действия</th>
         </tr>
         @foreach ($products as $product)
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{$product -> id}}</td>
+                <td>{{$product -> title}}</td>
+                <td>{{$product -> content}}</td>
+                <td>{{$product -> created_at}}</td>
                 <td>
                     <form action="" method="POST">
 
-                        <a href="" title="show">
+                        <a href="/products/{{$product -> id}}" title="show">
                             <i class="fas fa-eye text-success  fa-lg"></i>
                         </a>
 
-                        <a href="">
+                        <a href="/products/{{$product -> id}}/edit" title="edit">
                             <i class="fas fa-edit  fa-lg"></i>
                         </a>
 
