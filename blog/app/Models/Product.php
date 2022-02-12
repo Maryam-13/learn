@@ -9,9 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $table = 'posts';
-    public $timestamps = true;
-
+    
     protected $casts = [
         'price' => 'float'
     ];
@@ -20,6 +18,6 @@ class Product extends Model
         'name_id',
         'title',
         'content',
-        'date'
+        'created_at'
     ];
 }
