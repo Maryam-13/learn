@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(5);
+
+        $posts = Post::where('name_id', Auth::id())->paginate(5);
 
         return view('posts.index', compact('posts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
