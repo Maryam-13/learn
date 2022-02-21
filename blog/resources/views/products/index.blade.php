@@ -7,7 +7,7 @@
                 <h2>Блог </h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="/products/create" title="Create a product">  <i class="fas fa-plus-circle"></i>
+                <a class="btn btn-success" href="/posts/create" title="Создать запись">  <i class="fas fa-plus-circle"></i>
                     </a>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <td>{{$product -> content}}</td>
                 <td>{{$product -> created_at}}</td>
                 <td>
-                    <form action="" method="POST">
+                    <form action="/products/{{$product -> id}}" method="POST">
 
                         <a href="/products/{{$product -> id}}" title="show">
                             <i class="fas fa-eye text-success  fa-lg"></i>
@@ -56,6 +56,6 @@
         @endforeach
     </table>
 
-    {!! $products->links() !!}
+    {!! $products->links('pagination::bootstrap-4') !!}
 
 @endsection

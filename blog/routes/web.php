@@ -3,14 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('products', ProductController::class);
-
-Route::resource('product', ProductController::class);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +13,15 @@ Route::resource('product', ProductController::class);
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::resource('products', ProductController::class);

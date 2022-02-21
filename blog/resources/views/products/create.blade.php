@@ -22,10 +22,16 @@
             </ul>
         </div>
     @endif
-    <form action="" method="POST" >
+    <form action="/products" method="POST" >
         @csrf
 
         <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Пользователь</strong>
+                    <input type="text" name="name_id" class="form-control" placeholder="Номер пользователя">
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Название фильма</strong>

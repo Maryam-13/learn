@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProductController extends Controller
 {
@@ -13,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+        $products = Product::where("name_id", Auth::id())->paginate(5);
 
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -38,7 +40,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name_id' => 'required',
+	    'name_id' => 'required',
             'title' => 'required',
             'content' => 'required'
         ]);
@@ -80,7 +82,6 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'name_id' => 'required',
             'title' => 'required',
             'content' => 'required'
         ]);
