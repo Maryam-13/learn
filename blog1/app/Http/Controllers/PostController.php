@@ -41,13 +41,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-            'name_id' => 'required',
+       
+
+        $request->validate([
+           
             'title' => 'required',
             'content' => 'required'
         ]);
-
-        Post::create($request->all());
+       
+        $post = new Post($request->all());
+        $post->name_id = Auth::id();
+        $post->save();
+       // Post::create($request->all());
 
         return redirect()->route('posts.index')
             ->with('success', 'Post created successfully.');
@@ -61,6 +66,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if (Auth::id() !== $post->name_id){
+            abort(403); //Доступ запрещен
+        }
          return view('posts.show', compact('post'));
     }
 
@@ -72,6 +80,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        if (Auth::id() !== $post->name_id){
+            abort(403); //Доступ запрещен
+        }
         return view('posts.edit', compact('post'));
     }
 
@@ -103,6 +114,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if (Auth::id() !== $post->name_id){
+            abort(403); //Доступ запрещен
+        }
+        
         $post->delete();
 
         return redirect()->route('posts.index')
