@@ -30,13 +30,13 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Совет</strong>
+                    <strong>Название поста</strong>
                     <input type="text" name="title" value="{{$post -> title}}" class="form-control" >
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Пояснение</strong>
+                    <strong>Текст поста</strong>
                     <textarea class="form-control" style="height:50px" name="content"
                         placeholder="description">{{$post -> content}}</textarea>
                 </div>
