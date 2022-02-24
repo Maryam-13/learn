@@ -17,13 +17,13 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Совет</strong>
+            <strong>Название поста</strong>
             {{$post -> title}}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Пояснение</strong>
+            <strong>Текст поста</strong>
             {{$post -> content}}
         </div>
     </div>
