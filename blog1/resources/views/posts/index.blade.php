@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Советы, которые изменят вашу жизнь </h2>
+                <h2>Мой блог </h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="/posts/create" title="Создать пост">  <i class="fas fa-plus-circle"></i>
@@ -22,8 +22,8 @@
     <table class="table table-bordered table-responsive-lg">
         <tr>
             <th>No</th>
-            <th>Совет</th>
-            <th>Пояснение</th>
+            <th>Название поста</th>
+            <th>Текст поста</th>
             <th>Дата</th>
             <th>Действия</th>
         </tr>
