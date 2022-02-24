@@ -26,21 +26,16 @@
         @csrf
 
         <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
+    
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Пользователь</strong>
-                    <input type="text" name="name_id" class="form-control" placeholder="Номер пользователя">
+                    <strong>Название поста</strong>
+                    <input type="text" name="title" class="form-control" placeholder="заголовок">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Совет</strong>
-                    <input type="text" name="title" class="form-control" placeholder="Совет">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Пояснение</strong>
+                    <strong>Тескт поста</strong>
                     <textarea class="form-control" style="height:50px" name="content"
                         placeholder="Пояснение"></textarea>
                 </div>
