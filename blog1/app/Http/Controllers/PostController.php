@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 
 use Illuminate\Http\Request;
@@ -39,15 +40,8 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-       
-
-        $request->validate([
-           
-            'title' => 'required',
-            'content' => 'required'
-        ]);
        
         $post = new Post($request->all());
         $post->name_id = Auth::id();
@@ -93,13 +87,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        $request->validate([
-            
-            'title' => 'required',
-            'content' => 'required'
-        ]);
+        
         $post->update($request->all());
 
         return redirect()->route('posts.index')
