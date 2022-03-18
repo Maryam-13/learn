@@ -16,7 +16,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-        
+        'name_id' => 1,
         'title' => $this->faker->title(),
         'content' => $this->faker->text(),
         
