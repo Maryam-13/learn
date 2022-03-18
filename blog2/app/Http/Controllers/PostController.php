@@ -41,13 +41,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        
-                Post::create(    
+        $post = new Post($request->all());
+        $post->name_id = Auth::id();
+        $post->save(); 
+             /*  Post::create(   
             Request::validate([
-            'title' => ['required', 'max:90'],
+           'title' => ['required', 'max:90'],
            'content' => ['required'],
            ])
-        );
+        );*/
 
         return Redirect::route('posts.index');
     }
