@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+
 
 class PostController extends Controller
 {
@@ -14,7 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::where('name_id',Auth::id())->paginate(10);
+
+ return Inertia::render('Post/Index', ['posts' => $posts]);
     }
 
     /**
@@ -24,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Post/Create');
     }
 
     /**
@@ -35,7 +41,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+                Post::create(    
+            Request::validate([
+            'title' => ['required', 'max:90'],
+           'content' => ['required'],
+           ])
+        );
+
+        return Redirect::route('posts.index');
     }
 
     /**
@@ -57,7 +71,13 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return Inertia::render('Post/Edit', [
+            'post' => [
+            'id' => $post->id,
+            'title' => $post->title,
+            'content' => $post->content
+            ]
+            ]);
     }
 
     /**
@@ -69,7 +89,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $data = Request::validate([
+            'title' => ['required', 'max:90'],
+           'content' => ['required'],
+            ]);
+            $post->update($data);
+            
+           
+            return Redirect::route('posts.index');
     }
 
     /**
@@ -80,6 +107,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+ 
+ return Redirect::route('posts.index');
     }
 }
