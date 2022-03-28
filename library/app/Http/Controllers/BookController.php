@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreImage;
 use App\Models\Book;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+
+
 
 class BookController extends Controller
 {
@@ -37,10 +41,23 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    
+         
+     public function store(Request $request)
     {
+       
         $book = new Book($request->all());
         $book->name_id = Auth::id();
+        $image_path = '';
+
+    if ($request->hasFile('image')) {
+        $image_path = $request->file('image')->store('image', 'public');
+    }
+
+    
+        $book->image = $image_path;
+    
+
         $book->save(); 
       
         /* Book::create(

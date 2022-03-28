@@ -108,15 +108,15 @@ export default {
            annotation: props.book.annotation,
         });
 
-        return { form };
+        return { form,
+        submit() {
+            form.put(route("books.update", props.book.id));
+        }, 
+        };
     },
     props: {
         book: Object,
     },
-    methods: {
-        submit() {
-            this.form.put(route("books.update", this.book.id));
-        },
-    },
+    
 };
 </script>
