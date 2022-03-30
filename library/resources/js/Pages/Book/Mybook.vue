@@ -41,7 +41,12 @@
                                     <td class="px-4 py-2">{{ book.id }}</td>
                                     <td class="px-4 py-2">{{ book.title }}</td>
                                     <td class="px-4 py-2">{{ book.author }} </td>
-                                    <td class="px-4 py-2">{{ book.image }} </td>
+                                    <td class="px-4 py-2">
+                                        <img
+                                            :src="showImage() + book.image"
+                                            class="object-cover h-70 w-40"
+                                        />
+                                    </td>
                                      <td class="px-4 py-2">{{book.annotation }} </td>
                                     <td class="px-4 py-2 font-extrabold">
                                         <Link
@@ -88,6 +93,9 @@ export default {
  books: Object,
 },
 methods: {
+    showImage() {
+            return "/storage/";
+        },
  destroy(id) {
  this.$inertia.delete(route("books.destroy", id));
  },

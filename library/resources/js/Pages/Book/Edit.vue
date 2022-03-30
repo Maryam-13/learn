@@ -108,10 +108,11 @@ export default {
            annotation: props.book.annotation,
         });
 
-        return { form,
+        return { form, 
         submit() {
             form.put(route("books.update", props.book.id));
-        }, 
+        },
+        
         };
     },
     props: {

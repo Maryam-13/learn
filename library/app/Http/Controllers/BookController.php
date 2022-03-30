@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreImage;
 use App\Models\Book;
 use Illuminate\Support\Facades\Redirect;
+
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
@@ -21,7 +22,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::latest()->paginate(10);
+        $books = Book::where('give', 'false')->paginate(10);
         return Inertia::render('Book/Index', ['books' => $books]);
     }
 
@@ -47,7 +48,7 @@ class BookController extends Controller
     {
        
         $book = new Book($request->all());
-        $book->name_id = Auth::id();
+        $book->user_id = Auth::id();
         $image_path = '';
 
     if ($request->hasFile('image')) {
@@ -79,9 +80,10 @@ class BookController extends Controller
      */
     public function show()
     {
-        $books = Book::where('name_id',Auth::id())->paginate(10);
+        $books = Book::where('user_id',Auth::id())->paginate(10);
         return Inertia::render('Book/Show',['books' => $books]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -91,6 +93,10 @@ class BookController extends Controller
      */
     public function edit (Book $book)
     {
+        if (Auth::id() !== $book->user_id){
+            abort(403); //Доступ запрещен
+        }
+
         return Inertia::render('Book/Edit', [
             'book' => [
                 'id' => $book->id,
@@ -112,11 +118,11 @@ class BookController extends Controller
     {
         $data = Request::validate([
             'title' => ['required', 'max:90'],
-            'author' => ['required'],
+            'author' => ['required', 'max:90'],
             'annotation'=> ['required'],
         ]);
         $book->update($data);
-
+       
         return Redirect::route('books.index');
     }
 
@@ -128,8 +134,13 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        if (Auth::id() !== $book->user_id){
+            abort(403); //Доступ запрещен
+        }
         $book->delete();
         
         return Redirect::route('books.index');
     }
+   
+    
 }

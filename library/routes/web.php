@@ -32,7 +32,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('books', BookController::class);
 
-Route::get('/books/show', [BookController::class, "show"])
+Route::get('/books/show', [BookController::class, 'show'])
     ->middleware(['auth', 'verified'])->name('books.show');
 
     Route::get('image', [BookController::class,'index'])->name('book.index');

@@ -21,10 +21,25 @@
  text-green-100
  bg-green-500
  rounded
+ margin-right-20
  "
                                 :href="route('books.create')"
  >
  Добавить книгу
+ </Link>
+
+ <Link
+                                class="
+ px-6
+ py-2
+ mb-2
+ text-green-100
+ bg-green-500
+ rounded
+ "
+                                :href="route('books.index')"                                            
+ >
+ Все книги
  </Link>
                         </div>
                         <table>
@@ -34,6 +49,7 @@
                                 <td class="px-4 py-2">Автор</td>
                                 <td class="px-4 py-2">Изображение</td>
                                 <td class="px-4 py-2">Аннотация </td>
+                                <td class="px-4 py-2">Отдал почитать</td>
                                 <td class="px-4 py-2">Действие</td>
                             </thead>
                             <tbody>
@@ -48,6 +64,13 @@
                                         />
                                     </td>
                                      <td class="px-4 py-2">{{book.annotation }} </td>
+                                     <td class="px-4 py-2">
+                                     
+                               
+      <input type="checkbox" v-model="book.give" />
+     
+                                     
+                                     </td>
                                     <td class="px-4 py-2 font-extrabold">
                                         <Link
                                             class="text-green-700"
@@ -89,13 +112,19 @@ export default {
  BreezeNavLink,
  Link,
  },
+ 
  props: {
  books: Object,
+ 
 },
+
 methods: {
     showImage() {
             return "/storage/";
         },
+
+ 
+
  destroy(id) {
  this.$inertia.delete(route("books.destroy", id));
  },
