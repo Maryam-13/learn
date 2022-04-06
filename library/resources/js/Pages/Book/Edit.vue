@@ -49,6 +49,38 @@
                                     "
                                 />
                             </div>
+
+                            <div>
+                                <label for="File">File Upload</label>
+                                <input
+                                    type="file"
+                                    @change="previewImage"
+                                    ref="photo"
+                                    class="
+                                        w-full
+                                        px-4
+                                        py-2
+                                        mt-2
+                                        border
+                                        rounded-md
+                                        focus:outline-none
+                                        focus:ring-1
+                                        focus:ring-blue-600
+                                    "
+                                />
+                                <img
+                                    v-if="url"
+                                    :src="url"
+                                    class="w-full mt-4 h-80"
+                                />
+                                <div
+                                    v-if="errors.image"
+                                    class="font-bold text-red-600"
+                                >
+                                    {{ errors.image }}
+                                </div>
+                            </div>
+
                             <div>
                                 <label for="title">Аннотация</label>
                                 <textarea
@@ -101,23 +133,37 @@ export default {
         BreezeAuthenticatedLayout,
         Head,
     },
+     props: {
+        book: Object,
+        errors: Object,
+    },
+     data() {
+    return {
+      url: null,
+    }
+  },
     setup(props) {
         const form = useForm({
             title: props.book.title,
             author: props.book.author,
+            image: props.book.image,
            annotation: props.book.annotation,
         });
 
-        return { form, 
+        return { form };
+    },
+   
+    methods: {
         submit() {
-            form.put(route("books.update", props.book.id));
+            if (this.$refs.photo) {
+                this.form.image = this.$refs.photo.files[0];
+            }
+            this.form.post(route("books.update", this.book.id));
         },
-        
-        };
+        previewImage(e) {
+            const file = e.target.files[0];
+            this.url = URL.createObjectURL(file);
+        },
     },
-    props: {
-        book: Object,
-    },
-    
 };
 </script>
