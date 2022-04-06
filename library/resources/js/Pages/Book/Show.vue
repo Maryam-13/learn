@@ -65,11 +65,8 @@
                                     </td>
                                      <td class="px-4 py-2">{{book.annotation }} </td>
                                      <td class="px-4 py-2">
-                                     
-                               
-      <input type="checkbox" v-model="book.give" />
-     
-                                     
+                                    <input type="checkbox" v-model="book.give" @click="checkBook(book.id)" name="give" />
+                                    
                                      </td>
                                     <td class="px-4 py-2 font-extrabold">
                                         <Link
@@ -122,10 +119,10 @@ methods: {
     showImage() {
             return "/storage/";
         },
-
- 
-
- destroy(id) {
+checkBook(id){
+    this.$inertia.post(route("books.chek", id));
+},
+destroy(id) {
  this.$inertia.delete(route("books.destroy", id));
  },
 },
