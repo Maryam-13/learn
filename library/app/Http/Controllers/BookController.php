@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreImage;
 use App\Models\Book;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\StoreBookRequest;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -42,25 +43,23 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
-         
-     public function store(Request $request)
+
+
+    public function store(StoreBookRequest $request)
     {
-       
+
         $book = new Book($request->all());
         $book->user_id = Auth::id();
         $image_path = '';
 
-    if ($request->hasFile('image')) {
-        $image_path = $request->file('image')->store('image', 'public');
-    }
+        if ($request->hasFile('image')) {
+            $image_path = $request->file('image')->store('image', 'public');
+        }
 
-    
         $book->image = $image_path;
-    
 
-        $book->save(); 
-      
+        $book->save();
+
         /* Book::create(
             Request::validate([
                 'title' => ['required', 'max:90'],
@@ -80,8 +79,8 @@ class BookController extends Controller
      */
     public function show()
     {
-        $books = Book::where('user_id',Auth::id())->paginate(10);
-        return Inertia::render('Book/Show',['books' => $books]);
+        $books = Book::where('user_id', Auth::id())->paginate(10);
+        return Inertia::render('Book/Show', ['books' => $books]);
     }
 
 
@@ -91,9 +90,10 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit (Book $book)
+    public function edit(Book $book)
     {
-        if (Auth::id() !== $book->user_id){
+        
+        if (Auth::id() !== $book->user_id) {
             abort(403); //Доступ запрещен
         }
 
@@ -102,6 +102,7 @@ class BookController extends Controller
                 'id' => $book->id,
                 'title' => $book->title,
                 'author' => $book->author,
+                'image' => $book->image,
                 'annotation' => $book->annotation
             ]
         ]);
@@ -116,13 +117,24 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $data = Request::validate([
+       
+              
+        if ($request->hasFile('image')) {
+        $image_path = $request->file('image')->store('image', 'public');
+       }
+     
+        $book->image = $image_path;
+       
+        $book->save();
+        
+        $data = $request->validate([
             'title' => ['required', 'max:90'],
             'author' => ['required', 'max:90'],
-            'annotation'=> ['required'],
+            'annotation' => ['required'],
         ]);
+
         $book->update($data);
-       
+
         return Redirect::route('books.index');
     }
 
@@ -134,13 +146,22 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        if (Auth::id() !== $book->user_id){
+        if (Auth::id() !== $book->user_id) {
             abort(403); //Доступ запрещен
         }
         $book->delete();
-        
+
         return Redirect::route('books.index');
     }
-   
+
+    public function chek(Request $request, Book $book)
+    {
+       
+       $books->give = 'true';
     
+       $book->save();
+
+
+     return Redirect::route('books.show');
+    }
 }
