@@ -69,15 +69,15 @@
                                     "
                                 />
                                 <img
-                                    v-if="url"
-                                    :src="url"
+                                    v-if="book.image"
+                                    :src="'/storage/' + book.image"
                                     class="w-full mt-4 h-80"
                                 />
                                 <div
-                                    v-if="errors.image"
+                                    v-if="form.errors.image"
                                     class="font-bold text-red-600"
                                 >
-                                    {{ errors.image }}
+                                    {{ form.errors.image }}
                                 </div>
                             </div>
 
@@ -128,6 +128,7 @@
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
+import { ref } from "vue";
 export default {
     components: {
         BreezeAuthenticatedLayout,
@@ -150,20 +151,21 @@ export default {
            annotation: props.book.annotation,
         });
 
-        return { form };
-    },
-   
-    methods: {
-        submit() {
-            if (this.$refs.photo) {
-                this.form.image = this.$refs.photo.files[0];
+        return { 
+        form,
+        submit(photo) {
+            if (refs.photo) {
+                form.image = refs.photo.files[0];
             }
-            this.form.post(route("books.update", this.book.id));
+            form.post(route("books.update", props.book.id));
         },
         previewImage(e) {
             const file = e.target.files[0];
-            this.url = URL.createObjectURL(file);
+            url = URL.createObjectURL(file);
         },
+        };
     },
+   
+   
 };
 </script>
