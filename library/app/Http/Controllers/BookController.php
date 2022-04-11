@@ -92,7 +92,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        
+
         if (Auth::id() !== $book->user_id) {
             abort(403); //Доступ запрещен
         }
@@ -117,16 +117,15 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-       
-              
+
         if ($request->hasFile('image')) {
-        $image_path = $request->file('image')->store('image', 'public');
-       }
-     
+            $image_path = $request->file('image')->store('image', 'public');
+        }
+
         $book->image = $image_path;
-       
+
         $book->save();
-        
+
         $data = $request->validate([
             'title' => ['required', 'max:90'],
             'author' => ['required', 'max:90'],
@@ -154,14 +153,19 @@ class BookController extends Controller
         return Redirect::route('books.index');
     }
 
-    public function chek(Request $request, Book $book)
+    public function chek(Book $book)
     {
-       
-       $books->give = 'true';
-    
-       $book->save();
+        $value = $book->give;
 
+        if ($value == 'true') {
+            $value = 'false';
+        } else {
+            $value = 'true';
+        }
 
-     return Redirect::route('books.show');
+        $book->give = $value;
+        $book->save();
+
+        return Redirect::route('books.show');
     }
 }
