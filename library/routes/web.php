@@ -35,12 +35,12 @@ Route::resource('books', BookController::class);
 Route::get('/books/show', [BookController::class, 'show'])
     ->middleware(['auth', 'verified'])->name('books.show');
 
-Route::get('image', [BookController::class, 'index'])->name('book.index');
-Route::post('image', [BookController::class, 'store'])->name('book.store');
-Route::post('image', [BookController::class, 'edit'])->name('books.edit');
-Route::post('image', [BookController::class, 'update'])->name('books.update');
+//Route::get('image', [BookController::class, 'index'])->name('book.index');
+//Route::post('image', [BookController::class, 'store'])->name('book.store');
+//Route::post('image', [BookController::class, 'edit'])->name('books.edit');
+Route::post('books/{book}', [BookController::class, 'update'])->name('books.update');
 
-Route::post('give', [BookController::class, 'chek'])->name('books.chek');
+Route::post("books/{book}/give", [BookController::class, 'chek'])->name('books.chek');
 
 
 require __DIR__ . '/auth.php';
