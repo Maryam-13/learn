@@ -120,19 +120,24 @@ class BookController extends Controller
 
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('image', 'public');
+        } else {
+            $image_path = $book->image;
         }
 
         $book->image = $image_path;
+
 
         $book->save();
 
         $data = $request->validate([
             'title' => ['required', 'max:90'],
             'author' => ['required', 'max:90'],
+        
             'annotation' => ['required'],
         ]);
 
         $book->update($data);
+        //$book->update($request->all());
 
         return Redirect::route('books.index');
     }
