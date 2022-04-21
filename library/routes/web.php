@@ -35,6 +35,9 @@ Route::resource('books', BookController::class);
 Route::get('/books/show', [BookController::class, 'show'])
     ->middleware(['auth', 'verified'])->name('books.show');
 
+Route::get('/books/issued', [BookController::class, 'issued'])
+    ->middleware(['auth', 'verified'])->name('books.issued');
+
 //Route::get('image', [BookController::class, 'index'])->name('book.index');
 //Route::post('image', [BookController::class, 'store'])->name('book.store');
 //Route::post('image', [BookController::class, 'edit'])->name('books.edit');
