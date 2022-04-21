@@ -132,12 +132,11 @@ class BookController extends Controller
         $data = $request->validate([
             'title' => ['required', 'max:90'],
             'author' => ['required', 'max:90'],
-        
             'annotation' => ['required'],
         ]);
 
         $book->update($data);
-        //$book->update($request->all());
+
 
         return Redirect::route('books.index');
     }
@@ -172,5 +171,13 @@ class BookController extends Controller
         $book->save();
 
         return Redirect::route('books.show');
+    }
+
+    public function issued(){
+      
+        $books = Book::where('give', 'true')->paginate(10);
+        dd($books);
+        return Inertia::render('Book/Issued', ['books' => $books]);
+    
     }
 }
