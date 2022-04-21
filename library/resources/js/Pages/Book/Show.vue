@@ -10,60 +10,60 @@
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
           <div class="p-6 bg-white border-b border-gray-200">
-            <div class="mb-4">
+            <div class="menu">
+              <Link :href="route('books.index')" class="link"> Все книги </Link>
+              <Link :href="route('books.show')" class="link"> Мои книги </Link>
+              <Link :href="route('books.issued')" class="link"> Выдано </Link>
+            </div>
+
+            <div class="menu">
               <Link
                 class="px-6 py-2 mb-2 text-green-100 bg-green-500 rounded margin-right-20"
                 :href="route('books.create')"
               >
                 Добавить книгу
               </Link>
-
-              <Link
-                class="px-6 py-2 mb-2 text-green-100 bg-green-500 rounded"
-                :href="route('books.index')"
-              >
-                Все книги
-              </Link>
             </div>
-            <table>
-              <thead class="font-bold bg-gray-300 border-b-2">
-                <td class="px-4 py-2">ID</td>
-                <td class="px-4 py-2">Название книги</td>
-                <td class="px-4 py-2">Автор</td>
-                <td class="px-4 py-2">Изображение</td>
-                <td class="px-4 py-2">Аннотация</td>
-                <td class="px-4 py-2">Отдал почитать</td>
-                <td class="px-4 py-2">Действие</td>
-              </thead>
-              <tbody>
-                <tr v-for="book in books.data" :key="book.id">
-                  <td class="px-4 py-2">{{ book.id }}</td>
-                  <td class="px-4 py-2">{{ book.title }}</td>
-                  <td class="px-4 py-2">{{ book.author }}</td>
-                  <td class="px-4 py-2">
-                    <img :src="showImage() + book.image" class="object-cover h-70 w-40" />
-                  </td>
-                  <td class="px-4 py-2">{{ book.annotation }}</td>
-                  <td class="px-4 py-2">
-                    <form>
-                      <input
-                        type="checkbox"
-                        v-model="book.give"
-                        @click="checkBook(book.id)"
-                        name="give"
-                        value="book.give"
-                      />
-                    </form>
-                  </td>
-                  <td class="px-4 py-2 font-extrabold">
-                    <Link class="text-green-700" :href="route('books.edit', book.id)">
-                      Edit
-                    </Link>
-                    <Link @click="destroy(book.id)" class="text-red-700">>Delete</Link>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+
+            <div class="show_books" v-for="book in books.data" :key="book.id">
+              <div class="image">
+                <div>
+                  <img :src="showImage() + book.image" />
+                </div>
+                <div class="px-4 py-2">
+                  <form>
+                    <input
+                      type="checkbox"
+                      v-model="book.give"
+                      @click="checkBook(book.id)"
+                      name="give"
+                      value="book.give"
+                    />
+                  </form>
+                </div>
+                <div class="px-4 py-2 font-extrabold margin-bottom-20 text-align-center bg-green-500 rounded">
+                  <Link
+                    class="px-6 py-2 mb-2 text-green-100  "
+                    :href="route('books.edit', book.id)"
+                  >
+                   Изменить
+                  </Link>
+                </div>
+                <div class="px-4 py-2 text-align-center margin-bottom-20 bg-green-500 rounded">
+                  <Link
+                    class="px-6 py-2 mb-2 text-green-100 "
+                    @click="destroy(book.id)"
+                  >
+                    Удалить
+                  </Link>
+                </div>
+              </div>
+              <div class="info">
+                <div class="px-4 py-2">{{ book.title }}</div>
+                <div class="px-4 py-2">{{ book.author }}</div>
+                <div class="px-4 py-2">{{ book.annotation }}</div>
+              </div>
+            </div>
 
             <pagination :links="books.links" />
           </div>
@@ -78,7 +78,7 @@ import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import BreezeNavLink from "@/Components/NavLink.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { Link } from "@inertiajs/inertia-vue3";
-import {Inertia} from "@inertiajs/inertia";
+import { Inertia } from "@inertiajs/inertia";
 export default {
   components: {
     BreezeAuthenticatedLayout,
@@ -99,7 +99,7 @@ export default {
         Inertia.post(route("books.chek", id));
       },
       destroy(id) {
-        Inertia.delete(route("books.destroy", {id}));
+        Inertia.delete(route("books.destroy", { id }));
       },
     };
   },
