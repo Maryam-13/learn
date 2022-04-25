@@ -23,6 +23,7 @@ class CreateBooksTable extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
             $table->string('give')->default("false");
+            $table->string('whom')->nullable();
         });
     }
 

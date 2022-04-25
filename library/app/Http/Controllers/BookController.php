@@ -68,7 +68,7 @@ class BookController extends Controller
             ])
         );*/
 
-        return Redirect::route('books.index');
+        return Redirect::route('books.show');
     }
 
     /**
@@ -138,7 +138,7 @@ class BookController extends Controller
         $book->update($data);
 
 
-        return Redirect::route('books.index');
+        return Redirect::route('books.show');
     }
 
     /**
@@ -176,8 +176,12 @@ class BookController extends Controller
     public function issued(){
       
         $books = Book::where('give', 'true')->paginate(10);
-        dd($books);
+        
         return Inertia::render('Book/Issued', ['books' => $books]);
     
+    }
+
+    public function whom(Request $request, Book $book){
+        dd($request);
     }
 }

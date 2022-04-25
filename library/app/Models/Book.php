@@ -12,7 +12,8 @@ class Book extends Model
         'author',
         'image',
         'annotation',
-        'created_at'
+        'created_at',
+        'whom',
     ];
     use HasFactory;
 }

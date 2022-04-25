@@ -2,15 +2,15 @@
   <Head title="Dashboard" />
 
   <BreezeAuthenticatedLayout>
-    <template #header>
+    <!-- <template #header>
       <h2 class="text-xl font-semibold leading-tight text-gray-800">Book</h2>
-    </template>
+    </template>-->
 
     <div class="py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
           <div class="p-6 bg-white border-b border-gray-200">
-            <div class="menu">
+            <div class="menu margin-bottom-20">
               <Link :href="route('books.index')" class="link"> Все книги </Link>
               <Link :href="route('books.show')" class="link"> Мои книги </Link>
               <Link :href="route('books.issued')" class="link"> Выдано </Link>
@@ -18,7 +18,7 @@
 
             <div class="menu">
               <Link
-                class="px-6 py-2 mb-2 text-green-100 bg-green-500 rounded margin-right-20"
+                class="px-6 py-2 text-green-100 bg-green-500 rounded margin-right-20"
                 :href="route('books.create')"
               >
                 Добавить книгу
@@ -26,11 +26,30 @@
             </div>
 
             <div class="show_books" v-for="book in books.data" :key="book.id">
+
+              <div class="black" v-bind:class="{ visible: isActive }"></div>
+              <div class="Pop-Up" v-bind:class="{ visible: isActive }">
+                <form @submit.prevent="submit">
+                  <h2 class="margin-bottom-20">Выдать книгу</h2>
+                  <label for="title" class="margin-bottom-20">Кому:</label>
+                  <input
+                    type="text"
+                    v-model="form.whom"
+                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                  />
+                </form>
+                <div class="flex items-center mt-4">
+                  <button class="px-6 py-2 text-white bg-green-500 rounded">
+                    Выдать
+                  </button>
+                </div>
+              </div>
+
               <div class="image">
-                <div>
+                <div class="margin-bottom-20">
                   <img :src="showImage() + book.image" />
                 </div>
-                <div class="px-4 py-2">
+                <!-- <div class="px-4 py-2">
                   <form>
                     <input
                       type="checkbox"
@@ -40,23 +59,38 @@
                       value="book.give"
                     />
                   </form>
-                </div>
-                <div class="px-4 py-2 font-extrabold margin-bottom-20 text-align-center bg-green-500 rounded">
-                  <Link
-                    class="px-6 py-2 mb-2 text-green-100  "
-                    :href="route('books.edit', book.id)"
-                  >
-                   Изменить
-                  </Link>
-                </div>
-                <div class="px-4 py-2 text-align-center margin-bottom-20 bg-green-500 rounded">
-                  <Link
-                    class="px-6 py-2 mb-2 text-green-100 "
-                    @click="destroy(book.id)"
-                  >
-                    Удалить
-                  </Link>
-                </div>
+                </div>-->
+                <!-- <Link
+                  class="px-4 px-6 py-2 mb-2 text-green-100 bg-green-500 rounded font-extrabold margin-bottom-20 text-align-center"
+                  v-if="book.give == 'false'"
+                  @click="checkBook(book.id)"
+                >
+                  Выдать
+                </Link>-->
+                <Link
+                  class="px-4 px-6 py-2 mb-2 text-green-100 bg-green-500 rounded font-extrabold margin-bottom-20 text-align-center"
+                  v-if="book.give == 'false'"
+                  @click="ppvisible(book.id)"
+                >
+                  Выдать
+                </Link>
+                <Link
+                  v-else
+                  class="px-4 px-6 py-2 mb-2 font-extrabold margin-bottom-20 text-align-center"
+                  >{{ book.whom }}</Link
+                >
+                <Link
+                  class="px-4 px-6 py-2 mb-2 text-green-100 bg-green-500 rounded font-extrabold margin-bottom-20 text-align-center"
+                  :href="route('books.edit', book.id)"
+                >
+                  Изменить
+                </Link>
+                <Link
+                  class="px-4 px-6 py-2 mb-2 text-green-100 bg-green-500 rounded font-extrabold margin-bottom-20 text-align-center"
+                  @click="destroy(book.id)"
+                >
+                  Удалить
+                </Link>
               </div>
               <div class="info">
                 <div class="px-4 py-2">{{ book.title }}</div>
@@ -76,6 +110,7 @@
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import BreezeNavLink from "@/Components/NavLink.vue";
+import { useForm } from "@inertiajs/inertia-vue3";
 import { Head } from "@inertiajs/inertia-vue3";
 import { Link } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
@@ -86,12 +121,18 @@ export default {
     BreezeNavLink,
     Link,
   },
-
   props: {
     books: Object,
+    errors: Object,
   },
   setup() {
+    const form = useForm({
+      whom: null,
+    });
+    const isActive = false;
+
     return {
+      form,
       showImage() {
         return "/storage/";
       },
@@ -100,6 +141,13 @@ export default {
       },
       destroy(id) {
         Inertia.delete(route("books.destroy", { id }));
+      },
+      submit() {
+        form.post(route("books.whom"));
+      },
+      ppvisible(id) {
+        
+        isActive = !isActive;
       },
     };
   },

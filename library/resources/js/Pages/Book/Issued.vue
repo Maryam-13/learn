@@ -2,35 +2,26 @@
   <Head title="Dashboard" />
 
   <BreezeAuthenticatedLayout>
-    <template #header>
+    <!-- <template #header>
       <h2 class="text-xl font-semibold leading-tight text-gray-800">Book</h2>
-    </template>
+    </template>-->
 
     <div class="py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
           <div class="p-6 bg-white border-b border-gray-200">
-            <div class="menu">
-             <Link :href="route('books.index')" class="link"> Все книги </Link>
+            <div class="menu margin-bottom-20">
+              <Link :href="route('books.index')" class="link"> Все книги </Link>
               <Link :href="route('books.show')" class="link"> Мои книги </Link>
               <Link :href="route('books.issued')" class="link"> Выдано </Link>
             </div>
 
-            <div class="menu">
-              <Link
-                class="px-6 py-2 mb-2 text-green-100 bg-green-500 rounded margin-right-20"
-                :href="route('books.create')"
-              >
-                Добавить книгу
-              </Link>
-            </div>
-
             <div class="show_books" v-for="book in books.data" :key="book.id">
               <div class="image">
-                <div>
+                <div class="margin-bottom-20">
                   <img :src="showImage() + book.image" />
                 </div>
-                <div class="px-4 py-2">
+                <!-- <div class="px-4 py-2">
                   <form>
                     <input
                       type="checkbox"
@@ -40,23 +31,13 @@
                       value="book.give"
                     />
                   </form>
-                </div>
-                <div class="px-4 py-2 font-extrabold margin-bottom-20 text-align-center bg-green-500 rounded">
-                  <Link
-                    class="px-6 py-2 mb-2 text-green-100  "
-                    :href="route('books.edit', book.id)"
-                  >
-                   Изменить
-                  </Link>
-                </div>
-                <div class="px-4 py-2 text-align-center margin-bottom-20 bg-green-500 rounded">
-                  <Link
-                    class="px-6 py-2 mb-2 text-green-100 "
-                    @click="destroy(book.id)"
-                  >
-                    Удалить
-                  </Link>
-                </div>
+                </div>-->
+                <Link
+                  class="px-4 px-6 py-2 mb-2 text-green-100 bg-green-500 rounded font-extrabold margin-bottom-20 text-align-center"
+                  v-if="book.give=='true'" @click="checkBook(book.id)"
+                >
+                  Возврат
+                </Link>
               </div>
               <div class="info">
                 <div class="px-4 py-2">{{ book.title }}</div>

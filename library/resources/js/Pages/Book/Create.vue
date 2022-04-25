@@ -2,14 +2,19 @@
   <Head title="Dashboard" />
 
   <BreezeAuthenticatedLayout>
-    <template #header>
+    <!--<template #header>
       <h2 class="text-xl font-semibold leading-tight text-gray-800">Создать</h2>
-    </template>
+    </template>-->
 
     <div class="py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
           <div class="p-6 bg-white border-b border-gray-200">
+            <div class="menu margin-bottom-20">
+              <Link :href="route('books.index')" class="link"> Все книги </Link>
+              <Link :href="route('books.show')" class="link"> Мои книги </Link>
+              <Link :href="route('books.issued')" class="link"> Выдано </Link>
+            </div>
             <form @submit.prevent="submit">
               <div>
                 <label for="title">Название</label>
@@ -34,22 +39,8 @@
                 </div>
               </div>
 
-              <div>
-                <label for="File">File Upload</label>
-                <input
-                  type="file"
-                  @change="previewImage"
-                  ref="photo"
-                  class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                />
-                <img v-if="url" :src="url" class="w-full mt-4 h-80" />
-                <div v-if="errors.image" class="font-bold text-red-600">
-                  {{ errors.image }}
-                </div>
-              </div>
-
               <div class="mt-4">
-                <label for="title">Аннотация</label>
+                <label for="title">Описание</label>
                 <textarea
                   name="annotation"
                   type="text"
@@ -61,10 +52,24 @@
                   Поле Аннотация должно быть заполнено
                 </div>
               </div>
+              <label for="title">Обложка</label>
+              <div class="preview">
+                <img v-if="url" :src="url" class="mt-4 h-80" />
+                <div v-if="errors.image" class="font-bold text-red-600">
+                  {{ errors.image }}
+                </div>
+
+                <input
+                  type="file"
+                  @change="previewImage"
+                  ref="photo"
+                  class="px-4 py-2 mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                />
+              </div>
 
               <!-- submit -->
               <div class="flex items-center mt-4">
-                <button class="px-6 py-2 text-white bg-gray-900 rounded">
+                <button class="px-6 py-2 text-white bg-green-500 rounded">
                   Сохранить
                 </button>
               </div>
@@ -79,13 +84,18 @@
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import BreezeLabel from "@/Components/Label";
+import BreezeNavLink from "@/Components/NavLink.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { useForm } from "@inertiajs/inertia-vue3";
+import { Link } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
 import { ref } from "vue";
 export default {
   components: {
     BreezeAuthenticatedLayout,
     Head,
+    BreezeNavLink,
+    Link,
   },
   props: {
     errors: Object,
@@ -112,8 +122,7 @@ export default {
       previewImage,
       submit() {
         if (photo) {
-          form.image =  photo.value.files[0];
-          
+          form.image = photo.value.files[0];
         }
         form.post(route("books.store"));
       },
