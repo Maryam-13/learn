@@ -20430,8 +20430,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_NavLink_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/NavLink.vue */ "./resources/js/Components/NavLink.vue");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
-
 
 
 
@@ -20454,8 +20452,10 @@ function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-on
       whom: null
     });
     var isActive = false;
+    var number;
     return {
       form: form,
+      isActive: isActive,
       showImage: function showImage() {
         return "/storage/";
       },
@@ -20471,8 +20471,9 @@ function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-on
         form.post(route("books.whom"));
       },
       ppvisible: function ppvisible(id) {
+        number = id;
+        isActive = !isActive;
         alert(isActive);
-        !isActive, _readOnlyError("isActive");
       }
     };
   }
@@ -22785,17 +22786,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: book.id
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["black", {
-            visible: _ctx.isActive
+            visible: $setup.isActive
           }])
         }, null, 2
         /* CLASS */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
           "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["Pop-Up", {
-            visible: _ctx.isActive
+            visible: $setup.isActive
           }])
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-          onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-            return $setup.submit && $setup.submit.apply($setup, arguments);
+          onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+            return $setup.checkBook(_ctx.number);
           }, ["prevent"]))
         }, [_hoisted_11, _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
           type: "text",
