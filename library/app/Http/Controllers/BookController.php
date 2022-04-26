@@ -160,6 +160,7 @@ class BookController extends Controller
     public function chek(Book $book)
     {
         $value = $book->give;
+        dd($book);
 
         if ($value == 'true') {
             $value = 'false';
@@ -181,7 +182,7 @@ class BookController extends Controller
     
     }
 
-    public function whom(Request $request, Book $book){
+   /* public function whom(Request $request, Book $book){
         dd($request);
-    }
+    }*/
 }
