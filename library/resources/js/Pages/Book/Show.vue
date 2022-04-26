@@ -26,10 +26,9 @@
             </div>
 
             <div class="show_books" v-for="book in books.data" :key="book.id">
-
-              <div class="black" v-bind:class="{ visible: isActive }"></div>
-              <div class="Pop-Up" v-bind:class="{ visible: isActive }">
-                <form @submit.prevent="submit">
+              <div class="black" v-bind:class="{ visible : isActive }"></div>
+              <div class="Pop-Up" v-bind:class="{ visible: isActive }" >
+                <form @submit.prevent="checkBook(number)">
                   <h2 class="margin-bottom-20">Выдать книгу</h2>
                   <label for="title" class="margin-bottom-20">Кому:</label>
                   <input
@@ -129,10 +128,11 @@ export default {
     const form = useForm({
       whom: null,
     });
-    const isActive = false;
-
+    let isActive = false;
+    let number;
     return {
       form,
+      isActive,
       showImage() {
         return "/storage/";
       },
@@ -146,8 +146,9 @@ export default {
         form.post(route("books.whom"));
       },
       ppvisible(id) {
-        
+        number = id;
         isActive = !isActive;
+        
       },
     };
   },
