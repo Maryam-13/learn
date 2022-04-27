@@ -26,24 +26,6 @@
             </div>
 
             <div class="show_books" v-for="book in books.data" :key="book.id">
-              <div class="black" v-bind:class="{ visible : isActive }"></div>
-              <div class="Pop-Up" v-bind:class="{ visible: isActive }" >
-                <form @submit.prevent="checkBook(number)">
-                  <h2 class="margin-bottom-20">Выдать книгу</h2>
-                  <label for="title" class="margin-bottom-20">Кому:</label>
-                  <input
-                    type="text"
-                    v-model="form.whom"
-                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                  />
-                </form>
-                <div class="flex items-center mt-4">
-                  <button class="px-6 py-2 text-white bg-green-500 rounded">
-                    Выдать
-                  </button>
-                </div>
-              </div>
-
               <div class="image">
                 <div class="margin-bottom-20">
                   <img :src="showImage() + book.image" />
@@ -68,7 +50,7 @@
                 </Link>-->
                 <Link
                   class="px-4 px-6 py-2 mb-2 text-green-100 bg-green-500 rounded font-extrabold margin-bottom-20 text-align-center"
-                  v-if="book.give == 'false'"
+                  v-if="book.give == 'false'"                
                   @click="ppvisible(book.id)"
                 >
                   Выдать
@@ -98,6 +80,22 @@
               </div>
             </div>
 
+            <div class="black" v-bind:class="{ visible: isActive}"></div>
+            <div class="Pop-Up" v-bind:class="{ visible: isActive}">
+              <form @submit.prevent="checkBook(number)">
+                <h2 class="margin-bottom-20">Выдать книгу</h2>
+                <label for="title" class="margin-bottom-20">Кому:</label>
+                <input
+                  type="text"
+                  v-model="form.whom"
+                  class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                />
+              </form>
+              <div class="flex items-center mt-4">
+                <button class="px-6 py-2 text-white bg-green-500 rounded">Выдать</button>
+              </div>
+            </div>
+
             <pagination :links="books.links" />
           </div>
         </div>
@@ -113,6 +111,7 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import { Head } from "@inertiajs/inertia-vue3";
 import { Link } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
+import { ref } from "vue";
 export default {
   components: {
     BreezeAuthenticatedLayout,
@@ -128,11 +127,12 @@ export default {
     const form = useForm({
       whom: null,
     });
-    let isActive = false;
-    let number;
+    const isActive = ref(false);
+    const number = ref(0);
     return {
       form,
       isActive,
+      number,
       showImage() {
         return "/storage/";
       },
@@ -146,9 +146,8 @@ export default {
         form.post(route("books.whom"));
       },
       ppvisible(id) {
-        number = id;
-        isActive = !isActive;
-        
+        number.value = id;
+        isActive.value = !isActive.value;
       },
     };
   },
