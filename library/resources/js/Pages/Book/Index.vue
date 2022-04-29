@@ -11,9 +11,9 @@
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
           <div class="p-6 bg-white border-b border-gray-200">
             <div class="menu margin-bottom-20">
-              <Link :href="route('books.index')" class="link"> Все книги </Link>
-              <Link :href="route('books.show')" class="link"> Мои книги </Link>
-              <Link :href="route('books.issued')" class="link"> Выдано </Link>
+              <Link :href="route('books.index')" class="margin-left-15"> Все книги </Link>
+              <Link :href="route('books.show')" class="margin-left-15"> Мои книги </Link>
+              <Link :href="route('books.issued')" class="margin-left-15"> Выдано </Link>
             </div>
 
             <div class="show_books" v-for="book in books.data" :key="book.id">
@@ -23,8 +23,8 @@
 
               <div class="info">
                 <div class="px-4 py-2">{{ book.title }}</div>
-                <div class="px-4 py-2">{{ book.author }}</div>
-                <div class="px-4 py-2">{{ book.annotation }}</div>
+                <div class="px-4 py-2 font">{{ book.author }}</div>
+                <div class="px-4 py-2 font">{{ book.annotation }}</div>
               </div>
             </div>
             <pagination :links="books.links" />

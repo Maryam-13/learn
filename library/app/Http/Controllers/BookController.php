@@ -157,32 +157,31 @@ class BookController extends Controller
         return Redirect::route('books.index');
     }
 
-    public function chek(Book $book)
+    public function chek(Request $request, Book $book)
     {
         $value = $book->give;
-        dd($book);
-
+        $whomgive = $request->whom;
+        $book->whom = $whomgive;
+       
         if ($value == 'true') {
             $value = 'false';
+            $book->whom = null;
         } else {
-            $value = 'true';
+            $value = 'true'; 
         }
 
         $book->give = $value;
+        
         $book->save();
 
         return Redirect::route('books.show');
     }
 
-    public function issued(){
-      
-        $books = Book::where('give', 'true')->paginate(10);
-        
-        return Inertia::render('Book/Issued', ['books' => $books]);
-    
-    }
+    public function issued()
+    {
 
-   /* public function whom(Request $request, Book $book){
-        dd($request);
-    }*/
+        $books = Book::where('give', 'true')->paginate(10);
+
+        return Inertia::render('Book/Issued', ['books' => $books]);
+    }
 }
