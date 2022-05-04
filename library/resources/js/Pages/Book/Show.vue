@@ -120,6 +120,7 @@
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import BreezeNavLink from "@/Components/NavLink.vue";
+import Pagination from "@/Components/Pagination.vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 import { Head } from "@inertiajs/inertia-vue3";
 import { Link } from "@inertiajs/inertia-vue3";
@@ -131,6 +132,7 @@ export default {
     Head,
     BreezeNavLink,
     Link,
+     Pagination,
   },
   props: {
     books: Object,

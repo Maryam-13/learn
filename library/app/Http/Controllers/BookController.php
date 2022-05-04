@@ -23,7 +23,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::where('give', 'false')->paginate(10);
+        $books = Book::where('give', 'false')->paginate(5);
         return Inertia::render('Book/Index', ['books' => $books]);
     }
 
@@ -79,7 +79,7 @@ class BookController extends Controller
      */
     public function show()
     {
-        $books = Book::where('user_id', Auth::id())->paginate(10);
+        $books = Book::where('user_id', Auth::id())->paginate(5);
         return Inertia::render('Book/Show', ['books' => $books]);
     }
 
@@ -180,7 +180,7 @@ class BookController extends Controller
     public function issued()
     {
 
-        $books = Book::where('give', 'true')->paginate(10);
+        $books = Book::where('give', 'true')->where('user_id', Auth::id())->paginate(5);
 
         return Inertia::render('Book/Issued', ['books' => $books]);
     }

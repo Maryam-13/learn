@@ -57,6 +57,7 @@
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import BreezeNavLink from "@/Components/NavLink.vue";
+import Pagination from "@/Components/Pagination.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import { Link } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
@@ -66,6 +67,7 @@ export default {
     Head,
     BreezeNavLink,
     Link,
+     Pagination,
   },
 
   props: {
