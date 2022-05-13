@@ -68,7 +68,7 @@ class BookController extends Controller
             ])
         );*/
 
-        return Redirect::route('books.show');
+        return Redirect::route('books.mybook');
     }
 
     /**
@@ -77,13 +77,19 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function mybook()
     {
         $books = Book::where('user_id', Auth::id())->paginate(5);
-        return Inertia::render('Book/Show', ['books' => $books]);
+        return Inertia::render('Book/Mybook', ['books' => $books]);
     }
 
-
+    public function show(Book $book)
+    {
+        
+        $books = Book::where('id', $book->id)->paginate(1);
+        return Inertia::render('Book/Show', ['books' => $books]);
+       
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -138,7 +144,7 @@ class BookController extends Controller
         $book->update($data);
 
 
-        return Redirect::route('books.show');
+        return Redirect::route('books.mybook');
     }
 
     /**
@@ -174,7 +180,12 @@ class BookController extends Controller
         
         $book->save();
 
-        return Redirect::route('books.show');
+        if ($value == 'false') {
+            return Redirect::route('books.issued');
+        }
+        else {
+            return Redirect::route('books.mybook');
+        }
     }
 
     public function issued()

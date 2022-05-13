@@ -10,12 +10,6 @@
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
           <div class="p-6 bg-white border-b border-gray-200">
-            <div class="menu margin-bottom-20">
-              <Link :href="route('books.index')" class="margin-left-15"> Все книги </Link>
-              <Link :href="route('books.show')" class="margin-left-15"> Мои книги </Link>
-              <Link :href="route('books.issued')" class="margin-left-15"> Выдано </Link>
-            </div>
-
             <form @submit.prevent="submit">
               <div>
                 <label for="title">Название</label>
