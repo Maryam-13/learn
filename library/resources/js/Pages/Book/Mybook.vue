@@ -77,7 +77,7 @@
                     v-model="form.whom"
                     class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                   />-->
-                  <!--<div v-if="form.errors.whom" class="font-bold text-red-600">
+            <!--<div v-if="form.errors.whom" class="font-bold text-red-600">
                     Поле Кому должно быть заполнено
                   </div>-->
             <!--  <label class="font-bold text-red-600">{{ texterr }}</label>
@@ -96,9 +96,13 @@
                 </div>
               </form>
             </div>-->
-            <MyPopUp :isActive="isActive" :number="number"  @chancel="chancel" > 
-
-              </MyPopUp>
+            <MyPopUp
+              :isActive="isActive"
+              :number="number"
+              @chancel="chancel"
+              
+            >
+            </MyPopUp>
             <pagination :links="books.links" />
           </div>
         </div>
@@ -126,25 +130,24 @@ export default {
     Pagination,
     MyPopUp,
   },
-  props:  {
+  props: {
     books: Object,
     errors: Object,
-    
   },
   setup() {
     /*const form = useForm({
       whom: null,
     });*/
-    
+
     const isActive = ref(false);
     const number = ref(0);
     //const texterr = ref(null);
     return {
       //form,
-     // whom,
+      // whom,
       isActive,
       number,
-     // texterr,
+      // texterr,
       showImage() {
         return "/storage/";
       },
@@ -164,8 +167,10 @@ export default {
         number.value = id;
         isActive.value = !isActive.value;
       },
-    chancel() {
+      
+      chancel() {
         isActive.value = !isActive.value;
+        Inertia.get(route('books.mybook'));
       },
     };
   },
