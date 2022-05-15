@@ -19594,10 +19594,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     books: Object,
     errors: Object,
-    isActive: {
-      type: Boolean,
-      value: true
-    },
+    isActive: Boolean,
     number: Number
   },
   setup: function setup() {
@@ -19611,48 +19608,48 @@ __webpack_require__.r(__webpack_exports__);
       checkBook: function checkBook(id) {
         if (form.whom !== null) {
           form.post(route("books.chek", id));
-          isActive.value = !isActive.value;
+          _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_4__.Inertia.get(route('books.mybook'));
         } else {
           texterr.value = "Требуется указать Кому";
         }
       }
     };
     /*   const form = useForm({
-         whom: null,
-       });
-      const isActive =  ref(false);
-      const number = ref(0);
-       const texterr = ref(null);
-       return {
-         form,
-         isActive,
-         number,
-         texterr,
-         showImage() {
-           return "/storage/";
-         },
-         checkBook(id) {
-           
-           if (form.whom !== null) {
-             form.post(route("books.chek", id));
-             isActive.value = !isActive.value;
-           } else {
-             texterr.value = "Требуется указать Кому";
-           }
-         },
-         destroy(id) {
-           Inertia.delete(route("books.destroy", { id }));
-         },*/
+      whom: null,
+    });
+    const isActive =  ref(false);
+    const number = ref(0);
+    const texterr = ref(null);
+    return {
+      form,
+      isActive,
+      number,
+      texterr,
+      showImage() {
+        return "/storage/";
+      },
+      checkBook(id) {
+        
+        if (form.whom !== null) {
+          form.post(route("books.chek", id));
+          isActive.value = !isActive.value;
+        } else {
+          texterr.value = "Требуется указать Кому";
+        }
+      },
+      destroy(id) {
+        Inertia.delete(route("books.destroy", { id }));
+      },*/
 
     /*ppvisible(id) {
-      number.value = id;
-      isActive.value = !isActive.value;
-    },*/
+        number.value = id;
+        isActive.value = !isActive.value;
+      },*/
 
     /*
-    chancel() {
-     isActive.value = !isActive.value;
-    },*/
+      chancel() {
+       isActive.value = !isActive.value;
+      },*/
     // };
   }
 });
@@ -20587,6 +20584,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       chancel: function chancel() {
         isActive.value = !isActive.value;
+        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__.Inertia.get(route('books.mybook'));
       }
     };
   }
@@ -20978,13 +20976,6 @@ var _hoisted_4 = {
 var _hoisted_5 = {
   "class": "flex items-center mt-4 block-align-center"
 };
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "px-6 py-2 text-white bg-green-500 rounded"
-}, "Выдать", -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["black", {
@@ -20997,7 +20988,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       visible: $props.isActive
     }])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+    onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $setup.checkBook($props.number);
     }, ["prevent"]))
   }, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -21010,9 +21001,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.whom]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div v-if=\"form.errors.whom\" class=\"font-bold text-red-600\">\n                    Поле Кому должно быть заполнено\n                  </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.texterr), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "px-6 py-2 text-white bg-green-500 rounded",
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      if ($setup.form.whom !== null) {
+        _ctx.$emit('chancel');
+      }
+
+      ;
+    })
+  }, " Выдать "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "px-6 py-2 text-white bg-green-500 rounded margin-left-15",
-    onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+    onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return _ctx.$emit('chancel');
     }, ["prevent"]))
   }, " Отмена ")])], 32
