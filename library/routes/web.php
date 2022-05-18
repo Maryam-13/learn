@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\ImageController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,21 +33,9 @@ Route::get('/books/issued', [BookController::class, 'issued'])
     ->middleware(['auth', 'verified'])->name('books.issued');
 
 Route::get('/books/mybook', [BookController::class, 'mybook'])
-   ->middleware(['auth', 'verified'])->name('books.mybook');
-   
-/*Route::get('/books/show', [BookController::class, 'show'])
-   ->middleware(['auth', 'verified'])->name('books.show');*/
+    ->middleware(['auth', 'verified'])->name('books.mybook');
 
 Route::resource('books', BookController::class);
-
-//Route::get('/books/show', [BookController::class, 'show'])
-  //  ->middleware(['auth', 'verified'])->name('books.show');
-
-
-    //Route::get('image', [BookController::class, 'index'])->name('book.index');
-//Route::post('image', [BookController::class, 'store'])->name('book.store');
-//Route::post('image', [BookController::class, 'edit'])->name('books.edit');
-
 
 Route::post('books/{book}', [BookController::class, 'update'])->name('books.update');
 

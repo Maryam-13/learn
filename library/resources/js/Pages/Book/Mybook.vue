@@ -2,10 +2,6 @@
   <Head title="Dashboard" />
 
   <BreezeAuthenticatedLayout>
-    <!-- <template #header>
-      <h2 class="text-xl font-semibold leading-tight text-gray-800">Book</h2>
-    </template>-->
-
     <div class="py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
@@ -66,43 +62,8 @@
               </div>
             </div>
 
-            <!-- <div class="black" v-bind:class="{ visible: isActive }"></div>
-            <div class="Pop-Up" v-bind:class="{ visible: isActive }">
-              <form @submit.prevent="checkBook(number)">
-                <h2 class="margin-bottom-20">Выдать книгу</h2>
-                <label for="title" class="margin-bottom-20">Кому:</label>
-                <div>
-                  <input
-                    type="text"
-                    v-model="form.whom"
-                    class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                  />-->
-            <!--<div v-if="form.errors.whom" class="font-bold text-red-600">
-                    Поле Кому должно быть заполнено
-                  </div>-->
-            <!--  <label class="font-bold text-red-600">{{ texterr }}</label>
-                </div>
-                <div class="flex items-center mt-4 block-align-center">
-                  <button class="px-6 py-2 text-white bg-green-500 rounded">
-                    Выдать
-                  </button>
+            <MyPopUp :isActive="isActive" :number="number" @chancel="chancel"> </MyPopUp>
 
-                  <button
-                    class="px-6 py-2 text-white bg-green-500 rounded margin-left-15"
-                    @click.prevent="chancel"
-                  >
-                    Отмена
-                  </button>
-                </div>
-              </form>
-            </div>-->
-            <MyPopUp
-              :isActive="isActive"
-              :number="number"
-              @chancel="chancel"
-              
-            >
-            </MyPopUp>
             <pagination :links="books.links" />
           </div>
         </div>
@@ -116,7 +77,6 @@ import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import BreezeNavLink from "@/Components/NavLink.vue";
 import Pagination from "@/Components/Pagination.vue";
 import MyPopUp from "@/Components/MyPopUp.vue";
-import { useForm } from "@inertiajs/inertia-vue3";
 import { Head } from "@inertiajs/inertia-vue3";
 import { Link } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
@@ -135,31 +95,14 @@ export default {
     errors: Object,
   },
   setup() {
-    /*const form = useForm({
-      whom: null,
-    });*/
-
     const isActive = ref(false);
     const number = ref(0);
-    //const texterr = ref(null);
     return {
-      //form,
-      // whom,
       isActive,
       number,
-      // texterr,
       showImage() {
         return "/storage/";
       },
-      /*checkBook(id) {
-        alert(id);
-        if (whom !== null) {
-          form.post(route("books.chek", id));
-          isActive.value = !isActive.value;
-        } else {
-          texterr = "Требуется указать Кому";
-        }
-      },*/
       destroy(id) {
         Inertia.delete(route("books.destroy", { id }));
       },
@@ -167,10 +110,9 @@ export default {
         number.value = id;
         isActive.value = !isActive.value;
       },
-      
       chancel() {
         isActive.value = !isActive.value;
-        Inertia.get(route('books.mybook'));
+        Inertia.get(route("books.mybook"));
       },
     };
   },

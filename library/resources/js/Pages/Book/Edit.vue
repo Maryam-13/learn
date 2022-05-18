@@ -2,10 +2,7 @@
   <Head title="Dashboard" />
 
   <BreezeAuthenticatedLayout>
-    <!-- <template #header>
-      <h2 class="text-xl font-semibold leading-tight text-gray-800">Edit</h2>
-    </template>-->
-
+  
     <div class="py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
@@ -100,7 +97,6 @@ export default {
     book: Object,
     errors: Object,
   },
-
   setup(props) {
     const form = useForm({
       title: props.book.title,
@@ -115,7 +111,6 @@ export default {
       const file = photo.value.files[0];
       url.value = URL.createObjectURL(file);
     }
-
     function submit() {
       if (url.value == props.book.image) {
         form.image = url.value;

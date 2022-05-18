@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreImage;
 use App\Models\Book;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreBookRequest;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -60,14 +58,6 @@ class BookController extends Controller
 
         $book->save();
 
-        /* Book::create(
-            Request::validate([
-                'title' => ['required', 'max:90'],
-                'author' => ['required'],
-                'annotation'=> ['required']
-            ])
-        );*/
-
         return Redirect::route('books.mybook');
     }
 
@@ -85,10 +75,9 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        
+
         $books = Book::where('id', $book->id)->paginate(1);
         return Inertia::render('Book/Show', ['books' => $books]);
-       
     }
     /**
      * Show the form for editing the specified resource.
@@ -168,31 +157,28 @@ class BookController extends Controller
         $value = $book->give;
         $whomgive = $request->whom;
         $book->whom = $whomgive;
-       
+
         if ($value == 'true') {
             $value = 'false';
             $book->whom = null;
         } else {
-            $value = 'true'; 
+            $value = 'true';
         }
 
         $book->give = $value;
-        
+
         $book->save();
 
         if ($value == 'false') {
             return Redirect::route('books.issued');
-        }
-        else {
+        } else {
             return Redirect::route('books.mybook');
         }
     }
 
     public function issued()
     {
-
         $books = Book::where('give', 'true')->where('user_id', Auth::id())->paginate(5);
-
         return Inertia::render('Book/Issued', ['books' => $books]);
     }
 }

@@ -2,10 +2,6 @@
   <Head title="Dashboard" />
 
   <BreezeAuthenticatedLayout>
-    <!-- <template #header>
-      <h2 class="text-xl font-semibold leading-tight text-gray-800">Библиотека</h2>
-    </template>-->
-
     <div class="py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
@@ -16,16 +12,18 @@
               </div>
 
               <div class="info">
-                <div class="px-4 py-2" >
+                <div class="px-4 py-2">
                   <Link
-                  class="py-2 mb-2 font-extrabold margin-bottom-20"
-                  :href="route('books.show', book.id)"
-                >
-                 {{ book.title }}
-                </Link>
-                  </div>
+                    class="py-2 mb-2 font-extrabold margin-bottom-20"
+                    :href="route('books.show', book.id)"
+                  >
+                    {{ book.title }}
+                  </Link>
+                </div>
                 <div class="px-4 py-2 font">{{ book.author }}</div>
-                <div class="px-4 py-2 font">{{book.annotation.substring(0,200)+".."}}</div>
+                <div class="px-4 py-2 font">
+                  {{ book.annotation.substring(0, 200) + ".." }}
+                </div>
               </div>
             </div>
             <pagination :links="books.links" />
@@ -62,9 +60,9 @@ export default {
       destroy(id) {
         Inertia.delete(route("books.destroy", id));
       },
-      showbook(id){
+      showbook(id) {
         alert(id);
-          Inertia.post(route("books.show", id ));
+        Inertia.post(route("books.show", id));
       },
     };
   },
